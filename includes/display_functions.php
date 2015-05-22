@@ -1,6 +1,6 @@
 <?php
 
-//Display Functions File
+//Display Functions File OOP version
 
 //set up file
 require_once("initialize.php");
@@ -11,62 +11,47 @@ function display_breadcrumbs($connection,$portal_id,$topic_id,$sub_topic_1_id,$s
     if($portal_id != 156){ //only portal selected
         
         $portal = Portal::find_by_id($portal_id);
-        
-        $query = "SELECT * FROM portals WHERE id={$portal_id} LIMIT 1";
-        $result = mysqli_query($connection,$query);
-        $data = mysqli_fetch_assoc($result);
-        $bc_portal_title = $data['portal'];
+        $bc_portal_title = $portal->portal;
         
         $output = "<div class=\"row\">";
         $output .= "<ol class=\"breadcrumb\">";
         $output .= "<li><a href=\"index.php\">Home</a> <span class=\"glyphicon glyphicon-circle-arrow-right\"></span></li>";
         
-        if($topic_id == 156 && $category_id != 156 && $sub_topic_1_id == 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){
+        if($topic_id == 156 && $category_id != 156 && $sub_topic_1_id == 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){ // portal & category only
             
-            $query = "SELECT * FROM category WHERE id={$category_id} LIMIT 1";
-            $result = mysqli_query($connection,$query);
-            $data = mysqli_fetch_assoc($result);
-            $bc_category_title = $data['category_title'];
+            $category = Category::find_by_id($category_id);
+            $bc_category_title = $category->category_title;
             
             $output .="<li><a href=\"index.php?p={$portal_id}\">{$bc_portal_title}</a> <span class=\"glyphicon glyphicon-circle-arrow-right\"></span></li>";
             $output .="<li class=\"active\">{$bc_category_title}</li>";
             
         } elseif($topic_id != 156 && $category_id == 156 && $sub_topic_1_id == 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){ // portal and topic selected only
-            $query = "SELECT * FROM topics WHERE id={$topic_id} LIMIT 1";
-            $result = mysqli_query($connection,$query);
-            $data = mysqli_fetch_assoc($result);
-            $bc_topic_title = $data['topic'];
+            
+            $topic = Topic::find_by_id($topic_id);
+            $bc_topic_title = $topic->topic;
             
             $output .="<li><a href=\"index.php?p={$portal_id}\">{$bc_portal_title}</a> <span class=\"glyphicon glyphicon-circle-arrow-right\"></span></li>";
             $output .="<li class=\"active\">{$bc_topic_title}</li>";
             
         } elseif($topic_id != 156 && $category_id != 156 && $sub_topic_1_id == 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){ // portal, topic and category selected
             
-            $query = "SELECT * FROM topics WHERE id={$topic_id} LIMIT 1";
-            $result = mysqli_query($connection,$query);
-            $data = mysqli_fetch_assoc($result);
-            $bc_topic_title = $data['topic'];
+            $topic = Topic::find_by_id($topic_id);
+            $bc_topic_title = $topic->topic;
             
-            $query = "SELECT * FROM category WHERE id={$category_id} LIMIT 1";
-            $result = mysqli_query($connection,$query);
-            $data = mysqli_fetch_assoc($result);
-            $bc_category_title = $data['category_title'];
-            
-            
+            $category = Category::find_by_id($category_id);
+            $bc_category_title = $category->category_title;
+
             $output .= "<li><a href=\"index.php?p={$portal_id}\">{$bc_portal_title}</a> <span class=\"glyphicon glyphicon-circle-arrow-right\"></span></li>";
             $output .="<li><a href=\"index.php?p={$portal_id}&t={$topic_id}\">{$bc_topic_title}</a> <span class=\"glyphicon glyphicon-circle-arrow-right\"></span></li>";
             $output .="<li class=\"active\">{$bc_category_title}</li>";
             
         } elseif($topic_id != 156 && $category_id == 156 && $sub_topic_1_id != 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){ // portal, topic & sub_topic_1 selected only
-            $query = "SELECT * FROM topics WHERE id={$topic_id} LIMIT 1";
-            $result = mysqli_query($connection,$query);
-            $data = mysqli_fetch_assoc($result);
-            $bc_topic_title = $data['topic'];
             
-            $query = "SELECT * FROM sub_topic_1 WHERE id={$sub_topic_1_id} LIMIT 1";
-            $result = mysqli_query($connection,$query);
-            $data = mysqli_fetch_assoc($result);
-            $bc_sub_topic_1_title = $data['sub_topic_1'];
+            $topic = Topic::find_by_id($topic_id);
+            $bc_topic_title = $topic->topic;
+            
+            $sub_topic_1 = SubTopic1::find_by_id($sub_topic_1_id);
+            $bc_sub_topic_1_title = $sub_topic_1->sub_topic_1;
             
             $output .= "<li><a href=\"index.php?p={$portal_id}\">{$bc_portal_title}</a> <span class=\"glyphicon glyphicon-circle-arrow-right\"></span></li>";
             $output .="<li><a href=\"index.php?p={$portal_id}&t={$topic_id}\">{$bc_topic_title}</a> <span class=\"glyphicon glyphicon-circle-arrow-right\"></span></li>";
@@ -74,20 +59,14 @@ function display_breadcrumbs($connection,$portal_id,$topic_id,$sub_topic_1_id,$s
             
             
         } elseif($topic_id != 156 && $category_id != 156 && $sub_topic_1_id != 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){ // portal, topic, sub_topic_1 & category selected only
-            $query = "SELECT * FROM topics WHERE id={$topic_id} LIMIT 1";
-            $result = mysqli_query($connection,$query);
-            $data = mysqli_fetch_assoc($result);
-            $bc_topic_title = $data['topic'];
+            $topic = Topic::find_by_id($topic_id);
+            $bc_topic_title = $topic->topic;
             
-            $query = "SELECT * FROM sub_topic_1 WHERE id={$sub_topic_1_id} LIMIT 1";
-            $result = mysqli_query($connection,$query);
-            $data = mysqli_fetch_assoc($result);
-            $bc_sub_topic_1_title = $data['sub_topic_1'];
+            $sub_topic_1 = SubTopic1::find_by_id($sub_topic_1_id);
+            $bc_sub_topic_1_title = $sub_topic_1->sub_topic_1;
             
-            $query = "SELECT * FROM category WHERE id={$category_id} LIMIT 1";
-            $result = mysqli_query($connection,$query);
-            $data = mysqli_fetch_assoc($result);
-            $bc_category_title = $data['category_title'];
+            $category = Category::find_by_id($category_id);
+            $bc_category_title = $category->category_title;
             
             $output .= "<li><a href=\"index.php?p={$portal_id}\">{$bc_portal_title}</a> <span class=\"glyphicon glyphicon-circle-arrow-right\"></span></li>";
             $output .="<li><a href=\"index.php?p={$portal_id}&t={$topic_id}\">{$bc_topic_title}</a> <span class=\"glyphicon glyphicon-circle-arrow-right\"></span></li>";
@@ -95,20 +74,14 @@ function display_breadcrumbs($connection,$portal_id,$topic_id,$sub_topic_1_id,$s
             $output .="<li class=\"active\">{$bc_category_title}</li>";
             
         } elseif($topic_id != 156 && $category_id == 156 && $sub_topic_1_id != 156 && $sub_topic_2_id != 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){ // portal, topic, sub_topic_1 & sub_topic_2 selected only
-            $query = "SELECT * FROM topics WHERE id={$topic_id} LIMIT 1";
-            $result = mysqli_query($connection,$query);
-            $data = mysqli_fetch_assoc($result);
-            $bc_topic_title = $data['topic'];
+            $topic = Topic::find_by_id($topic_id);
+            $bc_topic_title = $topic->topic;
             
-            $query = "SELECT * FROM sub_topic_1 WHERE id={$sub_topic_1_id} LIMIT 1";
-            $result = mysqli_query($connection,$query);
-            $data = mysqli_fetch_assoc($result);
-            $bc_sub_topic_1_title = $data['sub_topic_1'];
+            $sub_topic_1 = SubTopic1::find_by_id($sub_topic_1_id);
+            $bc_sub_topic_1_title = $sub_topic_1->sub_topic_1;
             
-            $query = "SELECT * FROM sub_topic_2 WHERE id={$sub_topic_2_id} LIMIT 1";
-            $result = mysqli_query($connection,$query);
-            $data = mysqli_fetch_assoc($result);
-            $bc_sub_topic_2_title = $data['sub_topic_2'];
+            $sub_topic_2 = SubTopic2::find_by_id($sub_topic_2_id);
+            $bc_sub_topic_2_title = $sub_topic_2->sub_topic_2;
             
             $output .= "<li><a href=\"index.php?p={$portal_id}\">{$bc_portal_title}</a> <span class=\"glyphicon glyphicon-circle-arrow-right\"></span></li>";
             $output .="<li><a href=\"index.php?p={$portal_id}&t={$topic_id}\">{$bc_topic_title}</a> <span class=\"glyphicon glyphicon-circle-arrow-right\"></span></li>";
@@ -116,25 +89,17 @@ function display_breadcrumbs($connection,$portal_id,$topic_id,$sub_topic_1_id,$s
             $output .="<li class=\"active\">{$bc_sub_topic_2_title}</li>";
     
         } elseif($topic_id != 156 && $category_id != 156 && $sub_topic_1_id != 156 && $sub_topic_2_id != 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){ // portal,topic,sub_topic_1,sub_topic_2 & category selected only
-            $query = "SELECT * FROM topics WHERE id={$topic_id} LIMIT 1";
-            $result = mysqli_query($connection,$query);
-            $data = mysqli_fetch_assoc($result);
-            $bc_topic_title = $data['topic'];
+            $topic = Topic::find_by_id($topic_id);
+            $bc_topic_title = $topic->topic;
             
-            $query = "SELECT * FROM sub_topic_1 WHERE id={$sub_topic_1_id} LIMIT 1";
-            $result = mysqli_query($connection,$query);
-            $data = mysqli_fetch_assoc($result);
-            $bc_sub_topic_1_title = $data['sub_topic_1'];
+            $sub_topic_1 = SubTopic1::find_by_id($sub_topic_1_id);
+            $bc_sub_topic_1_title = $sub_topic_1->sub_topic_1;
             
-            $query = "SELECT * FROM sub_topic_2 WHERE id={$sub_topic_2_id} LIMIT 1";
-            $result = mysqli_query($connection,$query);
-            $data = mysqli_fetch_assoc($result);
-            $bc_sub_topic_2_title = $data['sub_topic_2'];
+            $sub_topic_2 = SubTopic2::find_by_id($sub_topic_2_id);
+            $bc_sub_topic_2_title = $sub_topic_2->sub_topic_2;
             
-            $query = "SELECT * FROM category WHERE id={$category_id} LIMIT 1";
-            $result = mysqli_query($connection,$query);
-            $data = mysqli_fetch_assoc($result);
-            $bc_category_title = $data['category_title'];
+            $category = Category::find_by_id($category_id);
+            $bc_category_title = $category->category_title;
             
             $output .= "<li><a href=\"index.php?p={$portal_id}\">{$bc_portal_title}</a> <span class=\"glyphicon glyphicon-circle-arrow-right\"></span></li>";
             $output .="<li><a href=\"index.php?p={$portal_id}&t={$topic_id}\">{$bc_topic_title}</a> <span class=\"glyphicon glyphicon-circle-arrow-right\"></span></li>";
@@ -143,25 +108,17 @@ function display_breadcrumbs($connection,$portal_id,$topic_id,$sub_topic_1_id,$s
             $output .="<li class=\"active\">{$bc_category_title}</li>";
     
         } elseif($topic_id != 156 && $category_id == 156 && $sub_topic_1_id != 156 && $sub_topic_2_id != 156 && $sub_topic_3_id != 156 && $sub_topic_4_id == 156){ // portal, topic, sub_topic_1,sub_topic_2 & sub_topic_3 selected only
-            $query = "SELECT * FROM topics WHERE id={$topic_id} LIMIT 1";
-            $result = mysqli_query($connection,$query);
-            $data = mysqli_fetch_assoc($result);
-            $bc_topic_title = $data['topic'];
+            $topic = Topic::find_by_id($topic_id);
+            $bc_topic_title = $topic->topic;
             
-            $query = "SELECT * FROM sub_topic_1 WHERE id={$sub_topic_1_id} LIMIT 1";
-            $result = mysqli_query($connection,$query);
-            $data = mysqli_fetch_assoc($result);
-            $bc_sub_topic_1_title = $data['sub_topic_1'];
+            $sub_topic_1 = SubTopic1::find_by_id($sub_topic_1_id);
+            $bc_sub_topic_1_title = $sub_topic_1->sub_topic_1;
             
-            $query = "SELECT * FROM sub_topic_2 WHERE id={$sub_topic_2_id} LIMIT 1";
-            $result = mysqli_query($connection,$query);
-            $data = mysqli_fetch_assoc($result);
-            $bc_sub_topic_2_title = $data['sub_topic_2'];
+            $sub_topic_2 = SubTopic2::find_by_id($sub_topic_2_id);
+            $bc_sub_topic_2_title = $sub_topic_2->sub_topic_2;
             
-            $query = "SELECT * FROM sub_topic_3 WHERE id={$sub_topic_3_id} LIMIT 1";
-            $result = mysqli_query($connection,$query);
-            $data = mysqli_fetch_assoc($result);
-            $bc_sub_topic_3_title = $data['sub_topic_3'];
+            $sub_topic_3 = SubTopic3::find_by_id($sub_topic_3_id);
+            $bc_sub_topic_3_title = $sub_topic_3->sub_topic_3;
             
             $output .= "<li><a href=\"index.php?p={$portal_id}\">{$bc_portal_title}</a> <span class=\"glyphicon glyphicon-circle-arrow-right\"></span></li>";
             $output .="<li><a href=\"index.php?p={$portal_id}&t={$topic_id}\">{$bc_topic_title}</a> <span class=\"glyphicon glyphicon-circle-arrow-right\"></span></li>";
@@ -170,30 +127,20 @@ function display_breadcrumbs($connection,$portal_id,$topic_id,$sub_topic_1_id,$s
             $output .="<li class=\"active\">{$bc_sub_topic_3_title}</li>";
     
         } elseif($topic_id != 156 && $category_id != 156 && $sub_topic_1_id != 156 && $sub_topic_2_id != 156 && $sub_topic_3_id != 156 && $sub_topic_4_id == 156){ // portal, topic, sub_topic_1,sub_topic_2,sub_topic_3 & category selected only
-            $query = "SELECT * FROM topics WHERE id={$topic_id} LIMIT 1";
-            $result = mysqli_query($connection,$query);
-            $data = mysqli_fetch_assoc($result);
-            $bc_topic_title = $data['topic'];
+            $topic = Topic::find_by_id($topic_id);
+            $bc_topic_title = $topic->topic;
             
-            $query = "SELECT * FROM sub_topic_1 WHERE id={$sub_topic_1_id} LIMIT 1";
-            $result = mysqli_query($connection,$query);
-            $data = mysqli_fetch_assoc($result);
-            $bc_sub_topic_1_title = $data['sub_topic_1'];
+            $sub_topic_1 = SubTopic1::find_by_id($sub_topic_1_id);
+            $bc_sub_topic_1_title = $sub_topic_1->sub_topic_1;
             
-            $query = "SELECT * FROM sub_topic_2 WHERE id={$sub_topic_2_id} LIMIT 1";
-            $result = mysqli_query($connection,$query);
-            $data = mysqli_fetch_assoc($result);
-            $bc_sub_topic_2_title = $data['sub_topic_2'];
+            $sub_topic_2 = SubTopic2::find_by_id($sub_topic_2_id);
+            $bc_sub_topic_2_title = $sub_topic_2->sub_topic_2;
             
-            $query = "SELECT * FROM sub_topic_3 WHERE id={$sub_topic_3_id} LIMIT 1";
-            $result = mysqli_query($connection,$query);
-            $data = mysqli_fetch_assoc($result);
-            $bc_sub_topic_3_title = $data['sub_topic_3'];
+            $sub_topic_3 = SubTopic3::find_by_id($sub_topic_3_id);
+            $bc_sub_topic_3_title = $sub_topic_3->sub_topic_3;
             
-            $query = "SELECT * FROM category WHERE id={$category_id} LIMIT 1";
-            $result = mysqli_query($connection,$query);
-            $data = mysqli_fetch_assoc($result);
-            $bc_category_title = $data['category_title'];
+            $category = Category::find_by_id($category_id);
+            $bc_category_title = $category->category_title;
             
             $output .= "<li><a href=\"index.php?p={$portal_id}\">{$bc_portal_title}</a> <span class=\"glyphicon glyphicon-circle-arrow-right\"></span></li>";
             $output .="<li><a href=\"index.php?p={$portal_id}&t={$topic_id}\">{$bc_topic_title}</a> <span class=\"glyphicon glyphicon-circle-arrow-right\"></span></li>";
@@ -203,30 +150,20 @@ function display_breadcrumbs($connection,$portal_id,$topic_id,$sub_topic_1_id,$s
             $output .="<li class=\"active\">{$bc_category_title}</li>";
     
         } elseif($topic_id != 156 && $category_id == 156 && $sub_topic_1_id != 156 && $sub_topic_2_id != 156 && $sub_topic_3_id != 156 && $sub_topic_4_id != 156){ // portal, topic, sub_topic_1,sub_topic_2,sub_topic_3 & sub_topic_4 selected only
-            $query = "SELECT * FROM topics WHERE id={$topic_id} LIMIT 1";
-            $result = mysqli_query($connection,$query);
-            $data = mysqli_fetch_assoc($result);
-            $bc_topic_title = $data['topic'];
+            $topic = Topic::find_by_id($topic_id);
+            $bc_topic_title = $topic->topic;
             
-            $query = "SELECT * FROM sub_topic_1 WHERE id={$sub_topic_1_id} LIMIT 1";
-            $result = mysqli_query($connection,$query);
-            $data = mysqli_fetch_assoc($result);
-            $bc_sub_topic_1_title = $data['sub_topic_1'];
+            $sub_topic_1 = SubTopic1::find_by_id($sub_topic_1_id);
+            $bc_sub_topic_1_title = $sub_topic_1->sub_topic_1;
             
-            $query = "SELECT * FROM sub_topic_2 WHERE id={$sub_topic_2_id} LIMIT 1";
-            $result = mysqli_query($connection,$query);
-            $data = mysqli_fetch_assoc($result);
-            $bc_sub_topic_2_title = $data['sub_topic_2'];
+            $sub_topic_2 = SubTopic2::find_by_id($sub_topic_2_id);
+            $bc_sub_topic_2_title = $sub_topic_2->sub_topic_2;
             
-            $query = "SELECT * FROM sub_topic_3 WHERE id={$sub_topic_3_id} LIMIT 1";
-            $result = mysqli_query($connection,$query);
-            $data = mysqli_fetch_assoc($result);
-            $bc_sub_topic_3_title = $data['sub_topic_3'];
+            $sub_topic_3 = SubTopic3::find_by_id($sub_topic_3_id);
+            $bc_sub_topic_3_title = $sub_topic_3->sub_topic_3;
             
-            $query = "SELECT * FROM sub_topic_4 WHERE id={$sub_topic_4_id} LIMIT 1";
-            $result = mysqli_query($connection,$query);
-            $data = mysqli_fetch_assoc($result);
-            $bc_sub_topic_4_title = $data['sub_topic_4'];
+            $sub_topic_4 = SubTopic4::find_by_id($sub_topic_4_id);
+            $bc_sub_topic_4_title = $sub_topic_4->sub_topic_4;
             
             $output .= "<li><a href=\"index.php?p={$portal_id}\">{$bc_portal_title}</a> <span class=\"glyphicon glyphicon-circle-arrow-right\"></span></li>";
             $output .="<li><a href=\"index.php?p={$portal_id}&t={$topic_id}\">{$bc_topic_title}</a> <span class=\"glyphicon glyphicon-circle-arrow-right\"></span></li>";
@@ -236,35 +173,23 @@ function display_breadcrumbs($connection,$portal_id,$topic_id,$sub_topic_1_id,$s
             $output .="<li class=\"active\">{$bc_sub_topic_4_title}</li>";
     
         } elseif($topic_id != 156 && $category_id != 156 && $sub_topic_1_id != 156 && $sub_topic_2_id != 156 && $sub_topic_3_id != 156 && $sub_topic_4_id != 156){ // portal, topic, sub_topic_1,sub_topic_2,sub_topic_3,sub_topic_4 & category selected
-            $query = "SELECT * FROM topics WHERE id={$topic_id} LIMIT 1";
-            $result = mysqli_query($connection,$query);
-            $data = mysqli_fetch_assoc($result);
-            $bc_topic_title = $data['topic'];
+            $topic = Topic::find_by_id($topic_id);
+            $bc_topic_title = $topic->topic;
             
-            $query = "SELECT * FROM sub_topic_1 WHERE id={$sub_topic_1_id} LIMIT 1";
-            $result = mysqli_query($connection,$query);
-            $data = mysqli_fetch_assoc($result);
-            $bc_sub_topic_1_title = $data['sub_topic_1'];
+            $sub_topic_1 = SubTopic1::find_by_id($sub_topic_1_id);
+            $bc_sub_topic_1_title = $sub_topic_1->sub_topic_1;
             
-            $query = "SELECT * FROM sub_topic_2 WHERE id={$sub_topic_2_id} LIMIT 1";
-            $result = mysqli_query($connection,$query);
-            $data = mysqli_fetch_assoc($result);
-            $bc_sub_topic_2_title = $data['sub_topic_2'];
+            $sub_topic_2 = SubTopic2::find_by_id($sub_topic_2_id);
+            $bc_sub_topic_2_title = $sub_topic_2->sub_topic_2;
             
-            $query = "SELECT * FROM sub_topic_3 WHERE id={$sub_topic_3_id} LIMIT 1";
-            $result = mysqli_query($connection,$query);
-            $data = mysqli_fetch_assoc($result);
-            $bc_sub_topic_3_title = $data['sub_topic_3'];
+            $sub_topic_3 = SubTopic3::find_by_id($sub_topic_3_id);
+            $bc_sub_topic_3_title = $sub_topic_3->sub_topic_3;
             
-            $query = "SELECT * FROM sub_topic_4 WHERE id={$sub_topic_4_id} LIMIT 1";
-            $result = mysqli_query($connection,$query);
-            $data = mysqli_fetch_assoc($result);
-            $bc_sub_topic_4_title = $data['sub_topic_4'];
+            $sub_topic_4 = SubTopic4::find_by_id($sub_topic_4_id);
+            $bc_sub_topic_4_title = $sub_topic_4->sub_topic_4;
             
-            $query = "SELECT * FROM category WHERE id={$category_id} LIMIT 1";
-            $result = mysqli_query($connection,$query);
-            $data = mysqli_fetch_assoc($result);
-            $bc_category_title = $data['category_title'];
+            $category = Category::find_by_id($category_id);
+            $bc_category_title = $category->category_title;
             
             $output .= "<li><a href=\"index.php?p={$portal_id}\">{$bc_portal_title}</a> <span class=\"glyphicon glyphicon-circle-arrow-right\"></span></li>";
             $output .="<li><a href=\"index.php?p={$portal_id}&t={$topic_id}\">{$bc_topic_title}</a> <span class=\"glyphicon glyphicon-circle-arrow-right\"></span></li>";
