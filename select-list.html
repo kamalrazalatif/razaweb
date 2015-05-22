@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+
+<SCRIPT LANGAUGE="JavaScript">
+
+
+function addItems()
+{
+	var e = document.getElementById('vehicle');
+	var s = document.getElementById('manufacturer');
+
+	// first empty the list
+	while(s.options.length > 0)
+		s[s.options.length - 1] = null;
+
+	if(e.value=="cars"){
+		// add to the end
+		s.options[s.options.length] = new Option('Ferrari', 'ferrari');
+
+		s.options[s.options.length] = new Option('Tonka', 'tonka');
+		// more if needed...
+	}else if(e.value=="mc"){
+		s.options[s.options.length] = new Option('Ducati', 'ducati');
+	}	
+}
+
+</SCRIPT>
+<style type="text/css">
+<!--
+.style20 {color: #333333; font-size: x-small; font-family: Verdana;}
+-->
+</style>
+</head>
+
+<body>
+<span class="style20">
+<select name="vehicle" id="vehicle" onchange="addItems()">
+  <option selected="selected">----</option>
+  <option value="cars">Cars</option>
+  <option value="mc">MCs</option>
+</select>
+<select name="manufacturer" id="manufacturer">
+</select>
+</span>
+</body>
+</html>

@@ -1,0 +1,314 @@
+/* this is my custom CSS */
+/*body { padding-top: 70px; }*/
+
+footer {
+	padding: 2em 0;
+	margin: 3em 0;
+	border-top: 1px solid #ddd;
+	color: #999;
+	text-align: center;
+}
+
+.pull-right.img-responsive {
+	margin: 0 0 1em 1em;
+}
+
+.btn-info {
+    background-color: #cdae51;
+    border-color: #3F2B22;
+    color: #FFFFFF;
+}
+
+.btn-info:hover,
+.btn-info:focus,
+.btn-info:active,
+.btn-info.active,
+.open .dropdown-toggle.btn-info {
+  color: #ffffff;
+  background-color: #3F2B22;
+  border-color: #333;
+}
+
+.panel-default {
+    border-color: #3F2B22;
+}
+.panel-default > .panel-heading {
+    background-color: #cdae51;
+    border-color: #3F2B22;
+    color: #fff;
+}
+
+.breadcrumb > li + li:before {
+  content: none;
+}
+
+
+.navbar-inverse .navbar-toggle {
+	color: white;
+	font-weight: bold;
+	border-color: white;
+}
+.navbar-inverse .navbar-toggle:hover {
+	background-color: #ddd;
+	color: #333;
+}
+.navbar-inverse .navbar-toggle .glyphicon {
+	color: white;
+}
+.navbar-inverse .navbar-toggle:hover .glyphicon {
+	color: #333;
+}
+
+.tab-pane {
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;	
+	border-bottom: 1px solid #ddd;
+	padding: 0.8em;
+}
+
+
+/* add these styles */
+
+.glyphicon {
+	color: #3F2B22;
+}
+.active .glyphicon {
+	color: #cdae51;
+}
+
+#input {
+	border: 1px solid blue;
+}
+
+#output {
+	border: 1px solid red;
+}
+
+/* These are my new main css styles */
+
+.main-container{
+	background-color: #e9eaed;
+}
+
+header{
+	background-color: #9CF;
+	margin-top: 0px;
+	padding: 5px;
+}
+
+#main-content{
+
+}
+
+#quick-links-sidebar{
+	background-color: #FFF;
+	padding: 5px;
+	border: 1px solid #CCC;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+	box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+
+.section-box{
+	background-color: #FFF;
+	margin: 10px;
+	padding-top: 0px;
+	padding-right: 5px;
+	padding-bottom: 5px;
+	padding-left: 5px;
+	border: 1px solid #CCC;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+	box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+	
+}
+
+.navbar-inverse{
+	margin-bottom: 0px;
+}
+
+#this-week-slideshow {
+	margin: 2px;
+	padding: 0px;
+	float: left;
+	height: 120px;
+	width: 200px;
+}
+#this-week-summary {
+	padding: 2px;
+	height: 200px;
+	width: 800px;
+	margin-top: 2px;
+	margin-right: 2px;
+	margin-bottom: 2px;
+	margin-left: 2px;
+}
+
+header h1{
+margin-left: 10px;
+/*color: #0051a3;*/
+}
+
+
+header h2{
+	margin-top: 0px;
+}
+
+header h2 a{
+	color: #FFF; 
+}
+
+.navbar-inverse{
+	border-radius: 0px;
+}
+
+
+.navport .navbar-nav>li>a:hover {
+	color: #000000;
+  background-color: #FFFFFF;
+ }
+ 
+ 
+.navbar-inverse .navbar-nav>li>a {
+  color: #ffffff;
+  
+}
+
+.navbar-inverse .navbar-nav>.active>a {
+	color: #000000;
+  background-color: #FFFFFF;
+}
+
+
+.navbar-inverse .navbar-nav>li>a {
+  text-shadow: none;
+}
+
+.navcat .navbar-nav>li>a:hover {
+  color: #ffffff;
+  background-color: #00aeef;
+ }
+
+.navtopic{
+border-bottom-color: #ffffff;
+}
+
+.navcat .navbar-nav>li>a {
+  color: #000000;
+  
+}
+
+.navtopic .navbar-nav>li>a:hover {
+  color: #000000;
+  background-color: #ffffff;
+ }
+
+.navcat{
+	background-color: #FFFFFF;
+	background-image: none;
+	border-color: #ffffff;
+}
+
+.link-box{
+	background-color: #ffffff;
+	border: 1px solid #CCC;
+	padding: 5px;
+}
+
+.navcat .navbar-nav>.active>a {
+  color: #ffffff;
+  background-color: #00aeef;
+}
+
+#quick-links-sidebar h2{
+	margin-top: 0px;
+}
+
+.wrap-box{
+	margin: 10px;
+}
+
+.intro-tab-topic{
+	float: left;
+	border: 1px solid #ccc;
+	padding: 5px;
+	margin: 5px;
+}
+
+#quick-links-sidebar li {
+	font-size: 100%;
+	list-style-type: none;
+}
+
+#quick-links-sidebar a {
+	padding: 5px;
+	margin-top: 5px;
+	margin-right: 0px;
+	margin-bottom: 5px;
+	margin-left: 0px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #999;
+	text-align: left;
+	display: block;
+}
+#quick-links-sidebar a:link, #quick-links-sidebar a:visited {
+	color: #06F;
+	text-decoration: none;
+	background-color: #FFF;
+}
+#quick-links-sidebar a:hover, #quick-links-sidebar a:focus, #quick-links-sidebar a:active {
+	color: #FFF;
+	background-color: #06F;
+}
+
+.db-update-form{
+	/*background-color: #DCDEDC;*/ 
+	border: 1px solid #d5d9df;
+	padding: 10px;
+	background-color: #f2f5f8;
+}
+
+.admin-section{
+	padding: 10px;
+	border: 1px solid #CCC;
+}
+
+.port-pic-p{
+	text-align: center;
+	background-color: black;
+	color: #FFFFFF;
+	margin: 0PX;
+}
+
+.col-sm-3{
+	padding-right: 10px;
+	padding-left: 10px;
+}
+
+.quick-links-ul{
+	padding:5px;
+}
+
+.link-box .row{
+	margin-right: 0px;
+	margin-left: 0px;
+}
+
+.top-link-pic{
+	
+}
+
+.top-link-text{
+	background-color: #f6f6f6;
+	color: #333;
+	padding: 2px;
+}
+
+
