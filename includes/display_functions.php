@@ -10,6 +10,8 @@ function display_breadcrumbs($connection,$portal_id,$topic_id,$sub_topic_1_id,$s
     
     if($portal_id != 156){ //only portal selected
         
+        $portal = Portal::find_by_id($portal_id);
+        
         $query = "SELECT * FROM portals WHERE id={$portal_id} LIMIT 1";
         $result = mysqli_query($connection,$query);
         $data = mysqli_fetch_assoc($result);

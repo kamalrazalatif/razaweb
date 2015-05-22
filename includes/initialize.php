@@ -1,21 +1,25 @@
 <?php
 
-require_once("connection.php");
+//require_once("connection.php");
 require_once("functions.php");
 
-//set up database classes in model
-require_once("model/database_object.php");
-require_once("model/database.php");
+// Library Path - to all Include Files
+defined('LIB_PATH') ? null: define('LIB_PATH',SITE_ROOT.DS.'includes');
 
-require_once("model/portal.php");
-require_once("model/topic.php");
-require_once("model/subtopic1.php");
-require_once("model/subtopic2.php");
-require_once("model/subtopic3.php");
-require_once("model/subtopic4.php");
-require_once("model/category.php");
-require_once("model/link.php");
-require_once("model/blogpost.php");
+//set up database classes in model
+require_once("database.php");
+require_once("database_object.php");
+
+
+require_once("portal.php");
+require_once("topic.php");
+require_once("subtopic1.php");
+require_once("subtopic2.php");
+require_once("subtopic3.php");
+require_once("subtopic4.php");
+require_once("category.php");
+require_once("link.php");
+require_once("blogpost.php");
 
 
 ?>
