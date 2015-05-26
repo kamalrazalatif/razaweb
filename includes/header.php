@@ -8,18 +8,140 @@ require_once("display_functions.php");
 $portal_id = !empty($_GET['p']) ? (int)$_GET['p'] : 10;
 $topic_id = !empty($_GET['t']) ? (int)$_GET['t'] : 156;
 $sub_topic_1_id = !empty($_GET['st1']) ? (int)$_GET['st1'] : 156;
+$sub_topic_2_id = !empty($_GET['st2']) ? (int)$_GET['st2'] : 156;
+$sub_topic_3_id = !empty($_GET['st3']) ? (int)$_GET['st3'] : 156;
+$sub_topic_4_id = !empty($_GET['st1']) ? (int)$_GET['st4'] : 156;
 $category_id = !empty($_GET['c']) ? (int)$_GET['c'] : 156;
 
 $query = "SELECT * FROM keywords_portal WHERE portal_id={$portal_id} LIMIT 1";
-$result = mysqli_query($connection,$query);
-$data = mysqli_fetch_assoc($result);
+$result = $db->query($query);
+$data = $db->fetch_assoc($result);
 $keywords = $data['keywords'];
 
-$query = "SELECT * FROM portals WHERE id={$portal_id} LIMIT 1";
-$result = mysqli_query($connection,$query);
-$data = mysqli_fetch_assoc($result);
-$title = $data['portal'];
-$display_title = "Razaweb " . $title . " Page";
+if ($portal_id != 10 && $topic_id == 156 && $category_id == 156 && $sub_topic_1_id == 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){
+    $portal = Portal::find_by_id($portal_id);
+    $portal_title = $portal->portal;
+    $display_title = "Razaweb | " . $portal_title . " Page";
+    
+} elseif ($portal_id != 10 && $topic_id == 156 && $category_id != 156 && $sub_topic_1_id == 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){
+    $portal = Portal::find_by_id($portal_id);
+    $portal_title = $portal->portal;
+    
+    $category = Category::find_by_id($category_id);
+    $category_title = $category->category_title;
+    
+    $display_title = "Razaweb | " . $portal_title . " | " . $category_title . " Page";
+    
+} elseif ($portal_id != 10 && $topic_id != 156 && $category_id == 156 && $sub_topic_1_id == 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){  
+    $topic = Topic::find_by_id($topic_id);
+    $topic_title = $topic->topic;
+    
+    $display_title = "Razaweb | " . $topic_title . " Page";
+    
+} elseif ($portal_id != 10 && $topic_id != 156 && $category_id != 156 && $sub_topic_1_id == 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){  
+    $topic = Topic::find_by_id($topic_id);
+    $topic_title = $topic->topic;
+    
+    $category = Category::find_by_id($category_id);
+    $category_title = $category->category_title;
+    
+    $display_title = "Razaweb | " . $topic_title . " | " . $category_title . " Page";
+    
+} elseif ($portal_id != 10 && $topic_id != 156 && $category_id == 156 && $sub_topic_1_id != 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){  
+    $topic = Topic::find_by_id($topic_id);
+    $topic_title = $topic->topic;
+    
+    $sub_topic_1 = SubTopic1::find_by_id($sub_topic_1_id);
+    $sub_topic_1_title = $sub_topic_1->sub_topic_1;
+    
+    $display_title = "Razaweb | " . $topic_title . " | " . $sub_topic_1_title . " Page";
+    
+} elseif ($portal_id != 10 && $topic_id != 156 && $category_id != 156 && $sub_topic_1_id != 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){  
+   
+    $sub_topic_1 = SubTopic1::find_by_id($sub_topic_1_id);
+    $sub_topic_1_title = $sub_topic_1->sub_topic_1;
+    
+    $category = Category::find_by_id($category_id);
+    $category_title = $category->category_title;
+    
+    $display_title = "Razaweb | " . $sub_topic_1_title . " | " . $category_title . " Page";
+    
+} elseif ($portal_id != 10 && $topic_id != 156 && $category_id == 156 && $sub_topic_1_id != 156 && $sub_topic_2_id != 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){  
+   
+    $topic = Topic::find_by_id($topic_id);
+    $topic_title = $topic->topic;
+    
+    $sub_topic_2 = SubTopic2::find_by_id($sub_topic_2_id);
+    $sub_topic_2_title = $sub_topic_2->sub_topic_2;
+    
+    $display_title = "Razaweb | " . $topic_title . " | " . $sub_topic_2_title . " Page";
+    
+} elseif ($portal_id != 10 && $topic_id != 156 && $category_id != 156 && $sub_topic_1_id != 156 && $sub_topic_2_id != 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){  
+    
+    $sub_topic_2 = SubTopic2::find_by_id($sub_topic_2_id);
+    $sub_topic_2_title = $sub_topic_2->sub_topic_2;
+    
+    $category = Category::find_by_id($category_id);
+    $category_title = $category->category_title;
+    
+    $display_title = "Razaweb | " . $sub_topic_2_title . " | " . $category_title . " Page";
+    
+} elseif ($portal_id != 10 && $topic_id != 156 && $category_id == 156 && $sub_topic_1_id != 156 && $sub_topic_2_id != 156 && $sub_topic_3_id != 156 && $sub_topic_4_id == 156){  
+    
+    $sub_topic_2 = SubTopic2::find_by_id($sub_topic_2_id);
+    $sub_topic_2_title = $sub_topic_2->sub_topic_2;
+    
+    $sub_topic_3 = SubTopic3::find_by_id($sub_topic_3_id);
+    $sub_topic_3_title = $sub_topic_3->sub_topic_3;
+    
+    $display_title = "Razaweb | " . $sub_topic_2_title . " | " . $sub_topic_3_title . " Page";
+    
+} elseif ($portal_id != 10 && $topic_id != 156 && $category_id != 156 && $sub_topic_1_id != 156 && $sub_topic_2_id != 156 && $sub_topic_3_id != 156 && $sub_topic_4_id == 156){  
+    
+    $sub_topic_2 = SubTopic2::find_by_id($sub_topic_2_id);
+    $sub_topic_2_title = $sub_topic_2->sub_topic_2;
+    
+    $sub_topic_3 = SubTopic3::find_by_id($sub_topic_3_id);
+    $sub_topic_3_title = $sub_topic_3->sub_topic_3;
+    
+    $category = Category::find_by_id($category_id);
+    $category_title = $category->category_title;
+    
+    $display_title = "Razaweb | " . $sub_topic_2_title . " | " . $sub_topic_3_title . " | " . $category_title . " Page";
+    
+} elseif ($portal_id != 10 && $topic_id != 156 && $category_id == 156 && $sub_topic_1_id != 156 && $sub_topic_2_id != 156 && $sub_topic_3_id != 156 && $sub_topic_4_id != 156){  
+    
+    $sub_topic_2 = SubTopic2::find_by_id($sub_topic_2_id);
+    $sub_topic_2_title = $sub_topic_2->sub_topic_2;
+    
+    $sub_topic_3 = SubTopic3::find_by_id($sub_topic_3_id);
+    $sub_topic_3_title = $sub_topic_3->sub_topic_3;
+    
+    $sub_topic_4 = SubTopic4::find_by_id($sub_topic_4_id);
+    $sub_topic_4_title = $sub_topic_4->sub_topic_4;
+    
+    $display_title = "Razaweb | " . $sub_topic_2_title . " | " . $sub_topic_3_title . " | " . $sub_topic_4_title . " Page";
+    
+} elseif ($portal_id != 10 && $topic_id != 156 && $category_id != 156 && $sub_topic_1_id != 156 && $sub_topic_2_id != 156 && $sub_topic_3_id != 156 && $sub_topic_4_id != 156){  
+    
+    $sub_topic_2 = SubTopic2::find_by_id($sub_topic_2_id);
+    $sub_topic_2_title = $sub_topic_2->sub_topic_2;
+    
+    $sub_topic_3 = SubTopic3::find_by_id($sub_topic_3_id);
+    $sub_topic_3_title = $sub_topic_3->sub_topic_3;
+    
+    $sub_topic_4 = SubTopic4::find_by_id($sub_topic_4_id);
+    $sub_topic_4_title = $sub_topic_4->sub_topic_4;
+    
+    $category = Category::find_by_id($category_id);
+    $category_title = $category->category_title;
+    
+    $display_title = "Razaweb | " . $sub_topic_2_title . " | " . $sub_topic_3_title . " | " . $sub_topic_4_title . " | " . $category_title . " Page";
+    
+} else {
+    $display_title = "RazaWeb Home Page";
+}
+
 
 
 ?>
