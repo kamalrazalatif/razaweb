@@ -6,7 +6,7 @@
 require_once("initialize.php");
 
 //file meta head info
-function display_page_title($connection,$portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id){
+function display_page_title($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id){
     
     if ($portal_id != 10 && $topic_id == 156 && $category_id == 156 && $sub_topic_1_id == 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){
             $portal = Portal::find_by_id($portal_id);
@@ -137,7 +137,7 @@ function display_page_title($connection,$portal_id,$topic_id,$sub_topic_1_id,$su
 } // end function display_page_title
 
 // Navigation Functions ------------------------------------------------------------------------------------------------------------------------------------------------------------->
-function display_breadcrumbs($connection,$portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id){
+function display_breadcrumbs($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id){
     
     if($portal_id != 156){ //only portal selected
         
