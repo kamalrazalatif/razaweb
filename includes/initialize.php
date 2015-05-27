@@ -21,6 +21,11 @@ require_once("category.php");
 require_once("link.php");
 require_once("blogpost.php");
 require_once("keywordsportal.php");
-
+require_once("keywordstopic.php");
+require_once("keywordscategory.php");
+require_once("keywordssubtopic1.php");
+require_once("keywordssubtopic2.php");
+require_once("keywordssubtopic3.php");
+require_once("keywordssubtopic4.php");
 
 ?>
