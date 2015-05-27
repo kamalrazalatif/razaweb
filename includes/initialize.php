@@ -20,6 +20,7 @@ require_once("subtopic4.php");
 require_once("category.php");
 require_once("link.php");
 require_once("blogpost.php");
+require_once("keywordsportal.php");
 
 
 ?>
