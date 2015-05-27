@@ -4,7 +4,7 @@
 
 class KeywordsPortal extends DatabaseObject {
     
-    protected static $table_name = "keywords_portals";
+    protected static $table_name = "keywords_portal";
     protected static $db_fields = array('id', 'portal_id', 'keywords');
     
     public $id;

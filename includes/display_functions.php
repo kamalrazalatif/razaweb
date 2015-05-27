@@ -31,11 +31,11 @@ function generate_meta_keywords($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_
             $keywords .= " " . $keywords_category->keywords;
             
         } elseif ($portal_id != 10 && $topic_id != 156 && $category_id == 156 && $sub_topic_1_id != 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){  
-            $keywords_subtopic1 = KeywordsSubtopic1::find_by_id($topic_id);
+            $keywords_subtopic1 = KeywordsSubtopic1::find_by_id($sub_topic_1_id);
             $keywords = $keywords_subtopic1->keywords;
             
         } elseif ($portal_id != 10 && $topic_id != 156 && $category_id != 156 && $sub_topic_1_id != 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){  
-           $keywords_subtopic1 = KeywordsSubtopic1::find_by_id($topic_id);
+           $keywords_subtopic1 = KeywordsSubtopic1::find_by_id($sub_topic_1_id);
             $keywords = $keywords_subtopic1->keywords;
             
             $keywords_category = KeywordsCategory::find_by_id($category_id);
@@ -43,23 +43,23 @@ function generate_meta_keywords($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_
 
             
         } elseif ($portal_id != 10 && $topic_id != 156 && $category_id == 156 && $sub_topic_1_id != 156 && $sub_topic_2_id != 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){  
-           $keywords_subtopic2 = KeywordsSubtopic2::find_by_id($topic_id);
+           $keywords_subtopic2 = KeywordsSubtopic2::find_by_id($sub_topic_2_id);
             $keywords = $keywords_subtopic2->keywords;
 
         } elseif ($portal_id != 10 && $topic_id != 156 && $category_id != 156 && $sub_topic_1_id != 156 && $sub_topic_2_id != 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){  
-           $keywords_subtopic2 = KeywordsSubtopic2::find_by_id($topic_id);
+           $keywords_subtopic2 = KeywordsSubtopic2::find_by_id($sub_topic_2_id);
             $keywords = $keywords_subtopic2->keywords;
 
             $keywords_category = KeywordsCategory::find_by_id($category_id);
             $keywords .= " " . $keywords_category->keywords;
             
         } elseif ($portal_id != 10 && $topic_id != 156 && $category_id == 156 && $sub_topic_1_id != 156 && $sub_topic_2_id != 156 && $sub_topic_3_id != 156 && $sub_topic_4_id == 156){  
-            $keywords_subtopic3 = KeywordsSubtopic3::find_by_id($topic_id);
+            $keywords_subtopic3 = KeywordsSubtopic3::find_by_id($sub_topic_3_id);
             $keywords = $keywords_subtopic3->keywords;
 
             
         } elseif ($portal_id != 10 && $topic_id != 156 && $category_id != 156 && $sub_topic_1_id != 156 && $sub_topic_2_id != 156 && $sub_topic_3_id != 156 && $sub_topic_4_id == 156){  
-            $keywords_subtopic3 = KeywordsSubtopic3::find_by_id($topic_id);
+            $keywords_subtopic3 = KeywordsSubtopic3::find_by_id($sub_topic_3_id);
             $keywords = $keywords_subtopic3->keywords;
             
             $keywords_category = KeywordsCategory::find_by_id($category_id);
@@ -67,18 +67,18 @@ function generate_meta_keywords($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_
 
             
         } elseif ($portal_id != 10 && $topic_id != 156 && $category_id == 156 && $sub_topic_1_id != 156 && $sub_topic_2_id != 156 && $sub_topic_3_id != 156 && $sub_topic_4_id != 156){  
-            $keywords_subtopic4 = KeywordsSubtopic4::find_by_id($topic_id);
+            $keywords_subtopic4 = KeywordsSubtopic4::find_by_id($sub_topic_4_id);
             $keywords = $keywords_subtopic4->keywords;
 
             
         } elseif ($portal_id != 10 && $topic_id != 156 && $category_id != 156 && $sub_topic_1_id != 156 && $sub_topic_2_id != 156 && $sub_topic_3_id != 156 && $sub_topic_4_id != 156){  
-            $keywords_subtopic4 = KeywordsSubtopic4::find_by_id($topic_id);
+            $keywords_subtopic4 = KeywordsSubtopic4::find_by_id($sub_topic_4_id);
             $keywords = $keywords_subtopic4->keywords;
             
             $keywords_category = KeywordsCategory::find_by_id($category_id);
             $keywords .= " " . $keywords_category->keywords;
             
-        } else {
+        } else { // $portal_id == 10
             
             $keywords_portal = KeywordsPortal::find_by_id($portal_id);
             $keywords = $keywords_portal->keywords;
