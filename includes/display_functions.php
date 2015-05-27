@@ -9,130 +9,82 @@ require_once("initialize.php");
 function generate_meta_keywords($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id){
     
     if ($portal_id != 10 && $topic_id == 156 && $category_id == 156 && $sub_topic_1_id == 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){
-            $portal = Portal::find_by_id($portal_id);
-            $portal_title = $portal->portal;
-            $display_title = "Razaweb | " . $portal_title . " Page";
+            $keywords_portal = KeywordsPortal::find_by_id($portal_id);
+            $keywords = $keywords_portal->keywords;
     
         } elseif ($portal_id != 10 && $topic_id == 156 && $category_id != 156 && $sub_topic_1_id == 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){
-            $portal = Portal::find_by_id($portal_id);
-            $portal_title = $portal->portal;
+            $keywords_portal = KeywordsPortal::find_by_id($portal_id);
+            $keywords = $keywords_portal->keywords;
             
-            $category = Category::find_by_id($category_id);
-            $category_title = $category->category_title;
-            
-            $display_title = "Razaweb | " . $portal_title . " | " . $category_title . " Page";
+            $keywords_category = KeywordsCategory::find_by_id($category_id);
+            $keywords .= " " . $keywords_category->keywords;
             
         } elseif ($portal_id != 10 && $topic_id != 156 && $category_id == 156 && $sub_topic_1_id == 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){  
-            $topic = Topic::find_by_id($topic_id);
-            $topic_title = $topic->topic;
-            
-            $display_title = "Razaweb | " . $topic_title . " Page";
+            $keywords_topic = KeywordsTopic::find_by_id($topic_id);
+            $keywords = $keywords_topic->keywords;
             
         } elseif ($portal_id != 10 && $topic_id != 156 && $category_id != 156 && $sub_topic_1_id == 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){  
-            $topic = Topic::find_by_id($topic_id);
-            $topic_title = $topic->topic;
+            $keywords_topic = KeywordsTopic::find_by_id($topic_id);
+            $keywords = $keywords_topic->keywords;
             
-            $category = Category::find_by_id($category_id);
-            $category_title = $category->category_title;
-            
-            $display_title = "Razaweb | " . $topic_title . " | " . $category_title . " Page";
+            $keywords_category = KeywordsCategory::find_by_id($category_id);
+            $keywords .= " " . $keywords_category->keywords;
             
         } elseif ($portal_id != 10 && $topic_id != 156 && $category_id == 156 && $sub_topic_1_id != 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){  
-            $topic = Topic::find_by_id($topic_id);
-            $topic_title = $topic->topic;
-            
-            $sub_topic_1 = SubTopic1::find_by_id($sub_topic_1_id);
-            $sub_topic_1_title = $sub_topic_1->sub_topic_1;
-            
-            $display_title = "Razaweb | " . $topic_title . " | " . $sub_topic_1_title . " Page";
+            $keywords_subtopic1 = KeywordsSubtopic1::find_by_id($topic_id);
+            $keywords = $keywords_subtopic1->keywords;
             
         } elseif ($portal_id != 10 && $topic_id != 156 && $category_id != 156 && $sub_topic_1_id != 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){  
-           
-            $sub_topic_1 = SubTopic1::find_by_id($sub_topic_1_id);
-            $sub_topic_1_title = $sub_topic_1->sub_topic_1;
+           $keywords_subtopic1 = KeywordsSubtopic1::find_by_id($topic_id);
+            $keywords = $keywords_subtopic1->keywords;
             
-            $category = Category::find_by_id($category_id);
-            $category_title = $category->category_title;
-            
-            $display_title = "Razaweb | " . $sub_topic_1_title . " | " . $category_title . " Page";
+            $keywords_category = KeywordsCategory::find_by_id($category_id);
+            $keywords .= " " . $keywords_category->keywords;
+
             
         } elseif ($portal_id != 10 && $topic_id != 156 && $category_id == 156 && $sub_topic_1_id != 156 && $sub_topic_2_id != 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){  
-           
-            $topic = Topic::find_by_id($topic_id);
-            $topic_title = $topic->topic;
-            
-            $sub_topic_2 = SubTopic2::find_by_id($sub_topic_2_id);
-            $sub_topic_2_title = $sub_topic_2->sub_topic_2;
-            
-            $display_title = "Razaweb | " . $topic_title . " | " . $sub_topic_2_title . " Page";
-            
+           $keywords_subtopic2 = KeywordsSubtopic2::find_by_id($topic_id);
+            $keywords = $keywords_subtopic2->keywords;
+
         } elseif ($portal_id != 10 && $topic_id != 156 && $category_id != 156 && $sub_topic_1_id != 156 && $sub_topic_2_id != 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){  
-            
-            $sub_topic_2 = SubTopic2::find_by_id($sub_topic_2_id);
-            $sub_topic_2_title = $sub_topic_2->sub_topic_2;
-            
-            $category = Category::find_by_id($category_id);
-            $category_title = $category->category_title;
-            
-            $display_title = "Razaweb | " . $sub_topic_2_title . " | " . $category_title . " Page";
+           $keywords_subtopic2 = KeywordsSubtopic2::find_by_id($topic_id);
+            $keywords = $keywords_subtopic2->keywords;
+
+            $keywords_category = KeywordsCategory::find_by_id($category_id);
+            $keywords .= " " . $keywords_category->keywords;
             
         } elseif ($portal_id != 10 && $topic_id != 156 && $category_id == 156 && $sub_topic_1_id != 156 && $sub_topic_2_id != 156 && $sub_topic_3_id != 156 && $sub_topic_4_id == 156){  
-            
-            $sub_topic_2 = SubTopic2::find_by_id($sub_topic_2_id);
-            $sub_topic_2_title = $sub_topic_2->sub_topic_2;
-            
-            $sub_topic_3 = SubTopic3::find_by_id($sub_topic_3_id);
-            $sub_topic_3_title = $sub_topic_3->sub_topic_3;
-            
-            $display_title = "Razaweb | " . $sub_topic_2_title . " | " . $sub_topic_3_title . " Page";
+            $keywords_subtopic3 = KeywordsSubtopic3::find_by_id($topic_id);
+            $keywords = $keywords_subtopic3->keywords;
+
             
         } elseif ($portal_id != 10 && $topic_id != 156 && $category_id != 156 && $sub_topic_1_id != 156 && $sub_topic_2_id != 156 && $sub_topic_3_id != 156 && $sub_topic_4_id == 156){  
+            $keywords_subtopic3 = KeywordsSubtopic3::find_by_id($topic_id);
+            $keywords = $keywords_subtopic3->keywords;
             
-            $sub_topic_2 = SubTopic2::find_by_id($sub_topic_2_id);
-            $sub_topic_2_title = $sub_topic_2->sub_topic_2;
-            
-            $sub_topic_3 = SubTopic3::find_by_id($sub_topic_3_id);
-            $sub_topic_3_title = $sub_topic_3->sub_topic_3;
-            
-            $category = Category::find_by_id($category_id);
-            $category_title = $category->category_title;
-            
-            $display_title = "Razaweb | " . $sub_topic_2_title . " | " . $sub_topic_3_title . " | " . $category_title . " Page";
+            $keywords_category = KeywordsCategory::find_by_id($category_id);
+            $keywords .= " " . $keywords_category->keywords;
+
             
         } elseif ($portal_id != 10 && $topic_id != 156 && $category_id == 156 && $sub_topic_1_id != 156 && $sub_topic_2_id != 156 && $sub_topic_3_id != 156 && $sub_topic_4_id != 156){  
-            
-            $sub_topic_2 = SubTopic2::find_by_id($sub_topic_2_id);
-            $sub_topic_2_title = $sub_topic_2->sub_topic_2;
-            
-            $sub_topic_3 = SubTopic3::find_by_id($sub_topic_3_id);
-            $sub_topic_3_title = $sub_topic_3->sub_topic_3;
-            
-            $sub_topic_4 = SubTopic4::find_by_id($sub_topic_4_id);
-            $sub_topic_4_title = $sub_topic_4->sub_topic_4;
-            
-            $display_title = "Razaweb | " . $sub_topic_2_title . " | " . $sub_topic_3_title . " | " . $sub_topic_4_title . " Page";
+            $keywords_subtopic4 = KeywordsSubtopic4::find_by_id($topic_id);
+            $keywords = $keywords_subtopic4->keywords;
+
             
         } elseif ($portal_id != 10 && $topic_id != 156 && $category_id != 156 && $sub_topic_1_id != 156 && $sub_topic_2_id != 156 && $sub_topic_3_id != 156 && $sub_topic_4_id != 156){  
+            $keywords_subtopic4 = KeywordsSubtopic4::find_by_id($topic_id);
+            $keywords = $keywords_subtopic4->keywords;
             
-            $sub_topic_2 = SubTopic2::find_by_id($sub_topic_2_id);
-            $sub_topic_2_title = $sub_topic_2->sub_topic_2;
-            
-            $sub_topic_3 = SubTopic3::find_by_id($sub_topic_3_id);
-            $sub_topic_3_title = $sub_topic_3->sub_topic_3;
-            
-            $sub_topic_4 = SubTopic4::find_by_id($sub_topic_4_id);
-            $sub_topic_4_title = $sub_topic_4->sub_topic_4;
-            
-            $category = Category::find_by_id($category_id);
-            $category_title = $category->category_title;
-            
-            $display_title = "Razaweb | " . $sub_topic_2_title . " | " . $sub_topic_3_title . " | " . $sub_topic_4_title . " | " . $category_title . " Page";
+            $keywords_category = KeywordsCategory::find_by_id($category_id);
+            $keywords .= " " . $keywords_category->keywords;
             
         } else {
-            $display_title = "RazaWeb Home Page";
+            
+            $keywords_portal = KeywordsPortal::find_by_id($portal_id);
+            $keywords = $keywords_portal->keywords;
         }
         
-        return $display_title;
+        return $keywords;
 }
 
 
