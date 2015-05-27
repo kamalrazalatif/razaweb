@@ -13,12 +13,6 @@ $sub_topic_4_id = !empty($_GET['st4']) ? (int)$_GET['st4'] : 156;
 $category_id = !empty($_GET['c']) ? (int)$_GET['c'] : 156;
 
 if($portal_id != 156){
-    $query = "SELECT * FROM portals WHERE id={$portal_id}";
-    $result = mysqli_query($connection,$query);
-    while($data = mysqli_fetch_assoc($result)){
-    $header_title = $data['portal'];
-    $portal_title = $data['portal'];
-    }
     $query = "SELECT * FROM topics WHERE portal_id={$portal_id} AND navbar=1";
     $topic_result = mysqli_query($connection,$query);
     
@@ -49,20 +43,14 @@ $topic_status_id = $data['topic_status_id'];
 <!-- bootstrap wrapper --------------------------------------------------------------------------------->
 <div class="container main-container">
 <!-- row 1 HEADER TITLE--------------------------------------------------------------------------->
-        <?php
-        
-            if($topic_id != 156){
-                $query = "SELECT * FROM topics WHERE id={$topic_id} LIMIT 1";
-                $result = mysqli_query($connection, $query);
-                $data = mysqli_fetch_assoc($result);
-                $header_title = $data['topic'];
-
-                
-            }
-        ?>
 <?php if( $portal_id != 156 ): ?>
         <header class="row">
-            <h1><?php echo $header_title; ?></h1>
+            <h1>
+            <?php
+                $header_title = display_header_title($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
+                echo $header_title;
+            ?>
+            </h1>
         <!-- end row 1 --></header>
 <?php endif; ?>
 

@@ -5,7 +5,8 @@
 //set up file
 require_once("initialize.php");
 
-//file meta head info
+//file meta head info ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
+
 function generate_meta_keywords($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id){
     
     if ($portal_id != 10 && $topic_id == 156 && $category_id == 156 && $sub_topic_1_id == 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){
@@ -217,6 +218,131 @@ function display_page_title($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id
         return $display_title;
     
 } // end function display_page_title
+
+// Web Page Header ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
+function display_header_title($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id){
+    
+    if ($portal_id != 10 && $topic_id == 156 && $category_id == 156 && $sub_topic_1_id == 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){
+            // Portal Only
+            $portal = Portal::find_by_id($portal_id);
+            $header_title = $portal->portal;
+    
+        } elseif ($portal_id != 10 && $topic_id == 156 && $category_id != 156 && $sub_topic_1_id == 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){
+            // Portal & Category
+            $portal = Portal::find_by_id($portal_id);
+            $header_title = $portal->portal;
+                       
+        } elseif ($portal_id != 10 && $topic_id != 156 && $category_id == 156 && $sub_topic_1_id == 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){  
+            // Portal & Topic
+            $topic = Topic::find_by_id($topic_id);
+            $header_title = $topic->topic;
+  
+        } elseif ($portal_id != 10 && $topic_id != 156 && $category_id != 156 && $sub_topic_1_id == 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){  
+            // Portal, Topic & category
+            $topic = Topic::find_by_id($topic_id);
+            $header_title = $topic->topic;
+            
+        } elseif ($portal_id != 10 && $topic_id != 156 && $category_id == 156 && $sub_topic_1_id != 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){  
+            // Portal, Topic & sub topic 1
+            $topic = Topic::find_by_id($topic_id);
+            $topic_title = $topic->topic;
+            
+            $sub_topic_1 = SubTopic1::find_by_id($sub_topic_1_id);
+            $sub_topic_1_title = $sub_topic_1->sub_topic_1;
+            
+            $header_title = $topic_title . " | " . $sub_topic_1_title;
+            
+        } elseif ($portal_id != 10 && $topic_id != 156 && $category_id != 156 && $sub_topic_1_id != 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){  
+            // Portal, Topc, Sub topic 1 & Category
+            $topic = Topic::find_by_id($topic_id);
+            $topic_title = $topic->topic;
+            
+            $sub_topic_1 = SubTopic1::find_by_id($sub_topic_1_id);
+            $sub_topic_1_title = $sub_topic_1->sub_topic_1;
+            
+            $header_title = $topic_title . " | " . $sub_topic_1_title;
+            
+        } elseif ($portal_id != 10 && $topic_id != 156 && $category_id == 156 && $sub_topic_1_id != 156 && $sub_topic_2_id != 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){  
+           // Portal, Topic, Sub topic 1 & Sub Topic 2
+            $topic = Topic::find_by_id($topic_id);
+            $topic_title = $topic->topic;
+            
+            $sub_topic_2 = SubTopic2::find_by_id($sub_topic_2_id);
+            $sub_topic_2_title = $sub_topic_2->sub_topic_2;
+            
+            $header_title = $topic_title . " | " . $sub_topic_2_title;
+            
+        } elseif ($portal_id != 10 && $topic_id != 156 && $category_id != 156 && $sub_topic_1_id != 156 && $sub_topic_2_id != 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){  
+            // Portal, Topic, Sub topic 1, Sub Topic 2 & category
+            $topic = Topic::find_by_id($topic_id);
+            $topic_title = $topic->topic;
+            
+            $sub_topic_2 = SubTopic2::find_by_id($sub_topic_2_id);
+            $sub_topic_2_title = $sub_topic_2->sub_topic_2;
+            
+            $header_title = $topic_title . " | " . $sub_topic_2_title;
+            
+        } elseif ($portal_id != 10 && $topic_id != 156 && $category_id == 156 && $sub_topic_1_id != 156 && $sub_topic_2_id != 156 && $sub_topic_3_id != 156 && $sub_topic_4_id == 156){  
+            // Portal, Topic, Sub topic 1, Sub Topic 2 & Sub Topic 3
+            $topic = Topic::find_by_id($topic_id);
+            $topic_title = $topic->topic;
+            
+            $sub_topic_2 = SubTopic2::find_by_id($sub_topic_2_id);
+            $sub_topic_2_title = $sub_topic_2->sub_topic_2;
+            
+            $sub_topic_3 = SubTopic3::find_by_id($sub_topic_3_id);
+            $sub_topic_3_title = $sub_topic_3->sub_topic_3;
+            
+            $header_title = $topic_title . " | " . $sub_topic_2_title. " | " . $sub_topic_3_title;
+            
+        } elseif ($portal_id != 10 && $topic_id != 156 && $category_id != 156 && $sub_topic_1_id != 156 && $sub_topic_2_id != 156 && $sub_topic_3_id != 156 && $sub_topic_4_id == 156){  
+            // Portal, Topic, Sub topic 1, Sub Topic 2, Sub Topic 3 & Category
+            $topic = Topic::find_by_id($topic_id);
+            $topic_title = $topic->topic;
+            
+            $sub_topic_2 = SubTopic2::find_by_id($sub_topic_2_id);
+            $sub_topic_2_title = $sub_topic_2->sub_topic_2;
+            
+            $sub_topic_3 = SubTopic3::find_by_id($sub_topic_3_id);
+            $sub_topic_3_title = $sub_topic_3->sub_topic_3;
+            
+            $header_title = $topic_title . " | " . $sub_topic_2_title. " | " . $sub_topic_3_title;
+            
+        } elseif ($portal_id != 10 && $topic_id != 156 && $category_id == 156 && $sub_topic_1_id != 156 && $sub_topic_2_id != 156 && $sub_topic_3_id != 156 && $sub_topic_4_id != 156){  
+            // Portal, Topic, Sub topic 1, Sub Topic 2, Sub Topic 3, & Sub Topic 4
+            $sub_topic_2 = SubTopic2::find_by_id($sub_topic_2_id);
+            $sub_topic_2_title = $sub_topic_2->sub_topic_2;
+            
+            $sub_topic_3 = SubTopic3::find_by_id($sub_topic_3_id);
+            $sub_topic_3_title = $sub_topic_3->sub_topic_3;
+            
+            $sub_topic_4 = SubTopic4::find_by_id($sub_topic_4_id);
+            $sub_topic_4_title = $sub_topic_4->sub_topic_4;
+            
+            $header_title = $sub_topic_2_title . " | " . $sub_topic_3_title . " | " . $sub_topic_4_title;
+            
+        } elseif ($portal_id != 10 && $topic_id != 156 && $category_id != 156 && $sub_topic_1_id != 156 && $sub_topic_2_id != 156 && $sub_topic_3_id != 156 && $sub_topic_4_id != 156){  
+            // Portal, Topic, Sub topic 1, Sub Topic 2, Sub Topic 3, Sub Topic 4 & Category
+            $sub_topic_2 = SubTopic2::find_by_id($sub_topic_2_id);
+            $sub_topic_2_title = $sub_topic_2->sub_topic_2;
+            
+            $sub_topic_3 = SubTopic3::find_by_id($sub_topic_3_id);
+            $sub_topic_3_title = $sub_topic_3->sub_topic_3;
+            
+            $sub_topic_4 = SubTopic4::find_by_id($sub_topic_4_id);
+            $sub_topic_4_title = $sub_topic_4->sub_topic_4;
+            
+            $header_title = $sub_topic_2_title . " | " . $sub_topic_3_title . " | " . $sub_topic_4_title;
+            
+        } else {
+            $header_title = "";
+        }
+  
+    return $header_title;
+    
+} //  end function display_header_title
+
+
 
 // Navigation Functions ------------------------------------------------------------------------------------------------------------------------------------------------------------->
 function display_breadcrumbs($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id){
