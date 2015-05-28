@@ -710,68 +710,53 @@ function display_breadcrumbs($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_i
 function display_content_box_header($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id){
     
     if ($category_id != 156){
-            $query = "SELECT * FROM category WHERE id={$category_id} LIMIT 1";
-            $result = mysqli_query($connection,$query);
-            $data = mysqli_fetch_assoc($result);
-            $category_title = $data['category_title'];
+        
+            $category = Category::find_by_id($category_id);
+            $category_title = $category->category_title;
             
             $output= "<h2>{$category_title}</h2>";
             
         } elseif ($sub_topic_4_id != 156){
             
-            $query = "SELECT * FROM sub_topic_4 WHERE id={$sub_topic_4_id} LIMIT 1";
-            $result = mysqli_query($connection,$query);
-            $data = mysqli_fetch_assoc($result);
-            $sub_topic_4_title = $data['sub_topic_4'];
+            $sub_topic_4 = SubTopic4::find_by_id($sub_topic_4_id);
+            $sub_topic_4_title = $sub_topic_4->sub_topic_4;
             
             $output= "<h2>{$sub_topic_4_title}</h2>";
             
         } elseif ($sub_topic_3_id != 156){
             
-            $query = "SELECT * FROM sub_topic_3 WHERE id={$sub_topic_3_id} LIMIT 1";
-            $result = mysqli_query($connection,$query);
-            $data = mysqli_fetch_assoc($result);
-            $sub_topic_3_title = $data['sub_topic_3'];
+            $sub_topic_3 = SubTopic3::find_by_id($sub_topic_3_id);
+            $sub_topic_3_title = $sub_topic_3->sub_topic_3;
             
             $output= "<h2>{$sub_topic_3_title}</h2>";
             
         } elseif($sub_topic_2_id != 156){
-            $query = "SELECT * FROM sub_topic_2 WHERE id={$sub_topic_2_id} LIMIT 1";
-            $result = mysqli_query($connection,$query);
-            $data = mysqli_fetch_assoc($result);
-            $sub_topic_2_title = $data['sub_topic_2'];
+            $sub_topic_2 = SubTopic2::find_by_id($sub_topic_2_id);
+            $sub_topic_2_title = $sub_topic_2->sub_topic_2;
             
             $output= "<h2>{$sub_topic_2_title}</h2>";
             
         } elseif ($sub_topic_1_id != 156){
-            $query = "SELECT * FROM sub_topic_1 WHERE id={$sub_topic_1_id} LIMIT 1";
-            $result = mysqli_query($connection,$query);
-            $data = mysqli_fetch_assoc($result);
-            $sub_topic_1_title = $data['sub_topic_1'];
+            $sub_topic_1 = SubTopic1::find_by_id($sub_topic_1_id);
+            $sub_topic_1_title = $sub_topic_1->sub_topic_1;
             
             $output= "<h2>{$sub_topic_1_title}</h2>";
             
         } elseif ($topic_id != 156){
-               
-            $query = "SELECT * FROM topics WHERE id={$topic_id} LIMIT 1";
-            $result = mysqli_query($connection, $query);
-            $data = mysqli_fetch_assoc($result);
-            $topic_title = $data['topic'];
+            $topic = Topic::find_by_id($topic_id);
+            $topic_title = $topic->topic;
 
-            $output= "<h2><a href=\"tw/index.html\">This week in {$topic_title}</a></h2>";
+            $output= "<h2>This week in {$topic_title}</h2>";
             
         } elseif ($portal_id != 156){
+            $portal = Portal::find_by_id($portal_id);
+            $portal_title = $portal->portal;
             
-            $query = "SELECT * FROM portals WHERE id={$portal_id} LIMIT 1";
-            $result = mysqli_query($connection,$query);
-            $data = mysqli_fetch_assoc($result);
-            $portal_title = $data['portal'];
-            
-            $output= "<h2><a href=\"tw/index.html\">This week in {$portal_title}</a></h2>";
+            $output= "<h2>This week in {$portal_title}</h2>";
     
             
         } else {
-            $output= "<h2><a href=\"tw/index.html\">This week in RazaWeb</a></h2>";
+            $output= "<h2>This week in RazaWeb</h2>";
         }
         
         return $output;
