@@ -39,61 +39,7 @@ $category_id = !empty($_GET['c']) ? (int)$_GET['c'] : 156;
 <!-- row 3 LOCAL/Category navigation--------------------------------------------------------------------------------------->
 
 <?php if (!empty($_GET['t'])): ?>
-        
-<div class="row">
-    <nav class="navbar navbar-inverse navcat">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-3">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                </button>
-            <!-- END .NAVBAR-HEADER--></div>
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-3">
-      <ul class="nav navbar-nav">
-                <?php
-                
-                    if($topic_id != 156){
-                        // List of Categories for Topic Pages
-                        $query = "SELECT * FROM category,category_topic_relationship WHERE topic_id={$topic_id} AND category_topic_relationship.category_id=category.id";
-                        $category_results = mysqli_query($connection,$query);
-                        while($category_data = mysqli_fetch_assoc($category_results)){
-                            $link_category_id = $category_data['id'];
-                            $category_title = $category_data['category_title'];
-                            if($link_category_id == $category_id){
-                                $active_link = " class = \"active\" ";
-                            } else {
-                                $active_link = null;
-                            }
-                            $output = "<li{$active_link}><a href=\"index.php?p={$portal_id}&amp;t={$topic_id}&amp;c={$link_category_id}\">{$category_title}</a></li>";
-                            echo $output;
-                        } // end while
-                        
-                        // List of Sub Topic 1's for Topic pages 
-                        $query = "SELECT * FROM sub_topic_1 WHERE topic_id={$topic_id}";
-                        $sub_topic_result = mysqli_query($connection,$query);
-                        while($sub_topic_data = mysqli_fetch_assoc($sub_topic_result)){
-                            $link_sub_topic_1_id = $sub_topic_data['id'];
-                            $link_sub_topic_1_title = $sub_topic_data['sub_topic_1'];
-                            if($link_sub_topic_1_id == $sub_topic_1_id){
-                                $active_link = " class = \"active\" ";
-                            } else {
-                                $active_link = null;
-                            }
-                            $output = "<li{$active_link}><a href=\"index.php?p={$portal_id}&amp;t={$topic_id}&amp;st1={$link_sub_topic_1_id}\">{$link_sub_topic_1_title}</a></li>";
-                            echo $output;
-                        } // end while
-                    
-                    } // endif
-                ?>
-        </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-<!--end category navbar --></nav>
-<!-- end row 3 Cateogry Navigation --></div>
+<?php display_topic_navigation($portal_id,$category_id,$topic_id,$sub_topic_1_id); ?>
 <?php endif; ?>
     
 <!-- row 4 breadcrumb div------------------------------------------------------------------------------------------------------>
