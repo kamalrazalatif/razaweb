@@ -27,5 +27,6 @@ require_once("keywordssubtopic1.php");
 require_once("keywordssubtopic2.php");
 require_once("keywordssubtopic3.php");
 require_once("keywordssubtopic4.php");
+require_once("portaltopicstatus.php");
 
 ?>

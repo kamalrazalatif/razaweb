@@ -12,29 +12,6 @@ $sub_topic_3_id = !empty($_GET['st3']) ? (int)$_GET['st3'] : 156;
 $sub_topic_4_id = !empty($_GET['st4']) ? (int)$_GET['st4'] : 156;
 $category_id = !empty($_GET['c']) ? (int)$_GET['c'] : 156;
 
-if($portal_id != 156){
-    $query = "SELECT * FROM topics WHERE portal_id={$portal_id} AND navbar=1";
-    $topic_result = mysqli_query($connection,$query);
-    
-    $query = "SELECT * FROM category,portal_category_relationship WHERE portal_id={$portal_id} AND portal_category_relationship.category_id=category.id";
-    $portal_category_results = mysqli_query($connection,$query);
-} else {
-    $header_title = "RazaWeb";
-}
-
-if($topic_id != 156){
-    $query = "SELECT * FROM sub_topic_1 WHERE topic_id={$topic_id}";
-    $sub_topic_result = mysqli_query($connection,$query);
-    
-    $query = "SELECT * FROM category,category_topic_relationship WHERE topic_id={$topic_id} AND category_topic_relationship.category_id=category.id";
-    $category_results = mysqli_query($connection,$query);
-}
-
-$query = "SELECT * FROM portal_topic_status WHERE portal_id={$portal_id} LIMIT 1";
-$topic_status_result = mysqli_query($connection,$query);
-$data = mysqli_fetch_assoc($topic_status_result);
-$topic_status_id = $data['topic_status_id'];
-
 
 
 // run find_sql select query to pull out links & content relevant to this page
@@ -56,53 +33,7 @@ $topic_status_id = $data['topic_status_id'];
 
 <!-- row 2 LOCAL/TOPIC navigation------------------------------------------------------------------------------->
 <?php if( $portal_id != 156 ): ?>
-<div class="row">
-    <nav class="navbar navbar-inverse navtopic">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
-                  <span class="sr-only">Toggle navigation</span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                </button>
-      
-            <!-- END .NAVBAR-HEADER--></div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
-            <ul class="nav navbar-nav">
-                <?php if($portal_id != 156){
-                    if($topic_status_id == 0){
-                        while($portal_category_data = mysqli_fetch_assoc($portal_category_results)){
-                        $link_category_id = $portal_category_data['id'];
-                        $category_title = $portal_category_data['category_title'];
-                        if($link_category_id == $category_id){
-                            $active_link = " class = \"active\" ";
-                        } else {
-                            $active_link = null;
-                        }
-                        $output = "<li{$active_link}><a href=\"index.php?p={$portal_id}&amp;c={$link_category_id}\">{$category_title}</a></li>";
-                        echo $output;
-                        }
-                    }
-                    while($topic_data = mysqli_fetch_assoc($topic_result)){
-                        $link_topic_id = $topic_data['id'];
-                        $topic_title = $topic_data['topic'];
-                        if($link_topic_id == $topic_id){
-                            $active_link = " class = \"active\" ";
-                        } else {
-                            $active_link = null;
-                        }
-                        $output = "<li{$active_link}><a href=\"index.php?p={$portal_id}&amp;t={$link_topic_id}\">{$topic_title}</a></li>";
-                        echo $output;
-                    }
-                }
-                ?>
-            </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-<!-- end row 2 LOCAL NAV--></div>
+<?php display_portal_navigation($portal_id,$category_id,$topic_id); ?>
 <?php endif; ?>
 
 <!-- row 3 LOCAL/Category navigation--------------------------------------------------------------------------------------->
@@ -126,6 +57,9 @@ $topic_status_id = $data['topic_status_id'];
                 <?php
                 
                     if($topic_id != 156){
+                        // List of Categories for Topic Pages
+                        $query = "SELECT * FROM category,category_topic_relationship WHERE topic_id={$topic_id} AND category_topic_relationship.category_id=category.id";
+                        $category_results = mysqli_query($connection,$query);
                         while($category_data = mysqli_fetch_assoc($category_results)){
                             $link_category_id = $category_data['id'];
                             $category_title = $category_data['category_title'];
@@ -137,18 +71,21 @@ $topic_status_id = $data['topic_status_id'];
                             $output = "<li{$active_link}><a href=\"index.php?p={$portal_id}&amp;t={$topic_id}&amp;c={$link_category_id}\">{$category_title}</a></li>";
                             echo $output;
                         } // end while
-                    
-                            while($sub_topic_data = mysqli_fetch_assoc($sub_topic_result)){
-                                $link_sub_topic_1_id = $sub_topic_data['id'];
-                                $link_sub_topic_1_title = $sub_topic_data['sub_topic_1'];
-                                if($link_sub_topic_1_id == $sub_topic_1_id){
-                                    $active_link = " class = \"active\" ";
-                                } else {
-                                    $active_link = null;
-                                }
-                                $output = "<li{$active_link}><a href=\"index.php?p={$portal_id}&amp;t={$topic_id}&amp;st1={$link_sub_topic_1_id}\">{$link_sub_topic_1_title}</a></li>";
-                                echo $output;
-                            } // end while
+                        
+                        // List of Sub Topic 1's for Topic pages 
+                        $query = "SELECT * FROM sub_topic_1 WHERE topic_id={$topic_id}";
+                        $sub_topic_result = mysqli_query($connection,$query);
+                        while($sub_topic_data = mysqli_fetch_assoc($sub_topic_result)){
+                            $link_sub_topic_1_id = $sub_topic_data['id'];
+                            $link_sub_topic_1_title = $sub_topic_data['sub_topic_1'];
+                            if($link_sub_topic_1_id == $sub_topic_1_id){
+                                $active_link = " class = \"active\" ";
+                            } else {
+                                $active_link = null;
+                            }
+                            $output = "<li{$active_link}><a href=\"index.php?p={$portal_id}&amp;t={$topic_id}&amp;st1={$link_sub_topic_1_id}\">{$link_sub_topic_1_title}</a></li>";
+                            echo $output;
+                        } // end while
                     
                     } // endif
                 ?>
@@ -160,7 +97,7 @@ $topic_status_id = $data['topic_status_id'];
 <?php endif; ?>
     
 <!-- row 4 breadcrumb div------------------------------------------------------------------------------------------------------>
-<?php display_breadcrumbs($connection,$portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id); ?>
+<?php display_breadcrumbs($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id); ?>
         
 <!-- row 5 CONTENT - main content section AND Quicklinks sidebar ------------------------------------------------------------------------------------------------------------------------------------------------------------------>
 <div class="row"><!-- row 5 - left content div and quick links side bar -->
@@ -172,7 +109,7 @@ $topic_status_id = $data['topic_status_id'];
             <header class="row">        
                 <?php
                 
-                $box_title = display_content_box_header($connection,$portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
+                $box_title = display_content_box_header($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
                 echo $box_title;
                 
                 ?>                         
@@ -182,7 +119,7 @@ $topic_status_id = $data['topic_status_id'];
             <!-- First Content Box - This Week -->
                 <?php
             
-                $content_box_content = display_content_box_content($connection,$portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
+                $content_box_content = display_content_box_content($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
                 echo $content_box_content;
                 
                 ?>

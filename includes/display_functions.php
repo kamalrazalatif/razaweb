@@ -345,6 +345,88 @@ function display_header_title($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_
 
 
 // Navigation Functions ------------------------------------------------------------------------------------------------------------------------------------------------------------->
+//PORTAL NAVIGATION
+function display_portal_navigation($portal_id,$category_id,$topic_id){
+    
+    $output = "<div class=\"row\">";
+    $output .= "<nav class=\"navbar navbar-inverse navtopic\">";
+    $output .= "<div class=\"container\">";
+    $output .= "<div class=\"navbar-header\">";
+    $output .= "<button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-2\">";
+    $output .= "<span class=\"sr-only\">Toggle navigation</span>";
+    $output .= "<span class=\"icon-bar\"></span>";
+    $output .= "<span class=\"icon-bar\"></span>";
+    $output .= "<span class=\"icon-bar\"></span>";
+    $output .= "</button>";
+      
+    $output .= "<!-- END .NAVBAR-HEADER--></div>";
+    $output .= "<!-- Collect the nav links, forms, and other content for toggling -->";
+    $output .= "<div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-2\">";
+    $output .= "<ul class=\"nav navbar-nav\">";
+    
+    echo $output;
+    
+    // Portal Pages Navigation Bar
+    $query = "SELECT * FROM portal_topic_status WHERE portal_id={$portal_id} LIMIT 1";
+    global $db;
+    $result = $db->query($query);
+    $data = $db->fetch_assoc($result);
+    $topic_status_id = $data['topic_status_id'];
+
+                    
+        if($topic_status_id == 0){ // List of Portal's Categories if relevant
+            
+            $query = "SELECT * FROM category,portal_category_relationship WHERE portal_id={$portal_id} AND portal_category_relationship.category_id=category.id";
+            global $db;
+            $result = $db->query($query);
+            
+            while($portal_category_data = $db->fetch_assoc($result)){
+                $link_category_id = $portal_category_data['id'];
+                $category_title = $portal_category_data['category_title'];
+            
+                if($link_category_id == $category_id){
+                    $active_link = " class = \"active\" ";
+                } else {
+                    $active_link = null;
+                }
+            
+                $output = "<li{$active_link}><a href=\"index.php?p={$portal_id}&amp;c={$link_category_id}\">{$category_title}</a></li>";
+                echo $output;
+            
+            } // end while
+            
+        } // end topic status if
+                $query = "SELECT * FROM topics WHERE portal_id={$portal_id} AND navbar=1";
+                
+                $topics = Topic::find_by_sql($query);
+                
+                foreach($topics as $topic){
+                    $link_topic_id = $topic->id;
+                    $topic_title = $topic->topic;
+                    if($link_topic_id == $topic_id){
+                        $active_link = " class = \"active\" ";
+                    } else {
+                        $active_link = null;
+                    }
+                    $output = "<li{$active_link}><a href=\"index.php?p={$portal_id}&amp;t={$link_topic_id}\">{$topic_title}</a></li>";
+                    echo $output;
+                }
+                          
+    $output = "</ul>";
+    $output .= "<!-- /.navbar-collapse --></div>";
+    $output .= "<!-- /.container-fluid --></div>";
+    $output .= "</nav>";
+    $output .= "<!-- end row 2 LOCAL NAV--></div>";
+    
+    echo $output;
+    
+} // end function display_portal_navigation
+
+
+
+
+
+// BREADRCUMBS
 function display_breadcrumbs($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id){
     
     if($portal_id != 156){ //only portal selected
@@ -562,7 +644,7 @@ function display_breadcrumbs($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_i
  *
  *
  */
-function display_content_box_header($connection,$portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id){
+function display_content_box_header($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id){
     
     if ($category_id != 156){
             $query = "SELECT * FROM category WHERE id={$category_id} LIMIT 1";
@@ -635,7 +717,7 @@ function display_content_box_header($connection,$portal_id,$topic_id,$sub_topic_
 
 
 // function display_content_box_content
-function display_content_box_content($connection,$portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id){
+function display_content_box_content($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id){
         
         if ($category_id != 156){
             //Top Links
