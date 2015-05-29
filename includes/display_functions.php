@@ -771,22 +771,22 @@ function display_content_box_content($portal_id,$topic_id,$sub_topic_1_id,$sub_t
             //Top Links
             
             // need to return an array or array of objects - oop?
-            top_links($connection,$portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
+            top_links($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
             
         } elseif ($sub_topic_4_id != 156){
             //Top Links
             // display tabbed panel not links here - and no tabbed panel below in html file!
-            top_links($connection,$portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
+            top_links($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
 
             
         } elseif ($sub_topic_3_id != 156){
             //Top Links
-            top_links($connection,$portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
+            top_links($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
 
             
         } elseif($sub_topic_2_id != 156){
             //Top Links
-            top_links($connection,$portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
+            top_links($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
             
         } elseif ($sub_topic_1_id != 156){
             // Sub Topic 1 Intro Content Box
@@ -796,9 +796,10 @@ function display_content_box_content($portal_id,$topic_id,$sub_topic_1_id,$sub_t
             
             //sub_topic_2_links
             $query = "SELECT * FROM sub_topic_2 WHERE sub_topic_1_id={$sub_topic_1_id}";
-                            $result_set = mysqli_query($connection,$query);
+            global $db;
+            $result = $db->query($query);
                             
-                            while ($link = mysqli_fetch_assoc($result_set)){
+                            while ($link = $db->fetch_assoc($result)){
                                 $sub_topic_2_id = $link['id'];
                                 $sub_topic_2_title = $link['sub_topic_2'];
                                 $sub_topic_2_pic = $link['sub_topic_2_pic'];
@@ -812,22 +813,24 @@ function display_content_box_content($portal_id,$topic_id,$sub_topic_1_id,$sub_t
             
             //Blog Post
             $query = "SELECT * FROM blog_posts WHERE portal_id={$portal_id} AND topic_id=0 LIMIT 1";
-            $result = mysqli_query($connection,$query);
-            $data = mysqli_fetch_assoc($result);
+            global $db;
+            $result = $db->query($query);
+            $data = $db->fetch_assoc($result);
             $blog_post = $data['post_content'];
                         
             $output= "<div class=\"row\"><p>{$blog_post}</p></div>";   
             
             //Top Links
-            top_links($connection,$portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
+            top_links($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
             
         } elseif ($portal_id != 156){
             // Portal Welcome Div
             
             //Blog Post
             $query = "SELECT * FROM blog_posts WHERE portal_id={$portal_id} AND topic_id=0 LIMIT 1";
-            $result = mysqli_query($connection,$query);
-            $data = mysqli_fetch_assoc($result);
+            global $db;
+            $result = $db->query($query);
+            $data = $db->fetch_assoc($result);
             $blog_post = $data['post_content'];
                         
             $output= "<div class=\"row\"><p>{$blog_post}</p></div>";
@@ -836,12 +839,13 @@ function display_content_box_content($portal_id,$topic_id,$sub_topic_1_id,$sub_t
         } else {
                         
                         //Welcome
-                        $welcome_box = welcome_box($connection);
+                        $welcome_box = welcome_box();
                         
                         //Blog Post
                         $query = "SELECT * FROM blog_posts WHERE portal_id=10 LIMIT 1";
-                        $result = mysqli_query($connection,$query);
-                        $data = mysqli_fetch_assoc($result);
+                        global $db;
+                        $result = $db->query($query);
+                        $data = $db->fetch_assoc($result);
                         $blog_post = $data['post_content'];
             
             
@@ -851,7 +855,7 @@ function display_content_box_content($portal_id,$topic_id,$sub_topic_1_id,$sub_t
         return $output;
 }
 
-function welcome_box($connection){
+function welcome_box(){
     
             echo "<div class=\"row\">";
             
@@ -863,8 +867,9 @@ function welcome_box($connection){
             
             $query = "SELECT * FROM portals WHERE tabpanel=1";
         
-            $result = mysqli_query($connection,$query);
-            while($data = mysqli_fetch_assoc($result)){
+            global $db;
+            $result = $db->query($query);
+            while($data = $db->fetch_assoc($result)){
                 $link_portal_id = $data['id'];
                 $link_portal_title = $data['portal'];
                 $link_portal_pic = $data['portal_pic'];
@@ -884,7 +889,7 @@ function welcome_box($connection){
            
 }
 
-function top_links($connection,$portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id){
+function top_links($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id){
     
     // portal level Top links
                 $query = "SELECT * FROM links ";
@@ -907,9 +912,10 @@ function top_links($connection,$portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2
                 if($category_id != 156)
                 $query .= "AND category_id={$category_id} ";
                 $query .= "LIMIT 4";
-                $result_set = mysqli_query($connection,$query);
+                global $db;
+                $result_set = $db->query($query);
                 
-                while ($link = mysqli_fetch_assoc($result_set)){
+                while ($link = $db->fetch_assoc($result_set)){
                     $href = $link['link_href'];
                     $text = htmlentities($link['link_text']);
                     $link_pic = $link['link_pic'];
@@ -919,7 +925,7 @@ function top_links($connection,$portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2
                 }
 }
 
-function display_links_list($connection,$portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id){
+function display_links_list($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id){
     
                             echo "<div class=\"row\">";
                         // REST OF LINKS 5 OR MORE:
@@ -929,9 +935,10 @@ function display_links_list($connection,$portal_id,$topic_id,$sub_topic_1_id,$su
                         // (1.database connection and seleciton in conneciton.php file)
                         // 2. SQL Query:
                         $query = "SELECT * FROM links WHERE portal_id={$portal_id} AND topic_id={$topic_id} AND category_id=1 LIMIT 5,10";
-                        $result_set = mysqli_query($connection,$query);
+                        global $db;
+                        $result_set = $db->query($query);
                         
-                        while ($link = mysqli_fetch_assoc($result_set)){
+                        while ($link = $db->fetch_assoc($result_set)){
                             $href = $link['link_href'];
                             $text = htmlentities($link['link_text']);
                             $link_pic = $link['link_pic'];
@@ -948,7 +955,7 @@ function display_links_list($connection,$portal_id,$topic_id,$sub_topic_1_id,$su
 
 // quick-links-sidebar functions ------------------------------------------------------------------------------------------------------------------->
 
-function display_quick_links_sidebar($connection,$portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id){
+function display_quick_links_sidebar($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id){
     $output = "<aside class=\"col-sm-3\">";
     $output .= "<div id=\"quick-links-sidebar\">";
     $output .= "<h2>Quick Links</h2>";
@@ -965,9 +972,10 @@ function display_quick_links_sidebar($connection,$portal_id,$topic_id,$sub_topic
         if($topic_id == 156){
             $query_topic_id = 0;
             $query = "SELECT * FROM links WHERE portal_id={$query_portal_id} AND quicklink=1";
-            $result_set = mysqli_query($connection,$query);
+            global $db;
+            $result_set = $db->query($query);
         
-            while ($link = mysqli_fetch_assoc($result_set)){
+            while ($link = $db->fetch_assoc($result_set)){
                 $href = $link['link_href'];
                 $text = $link['link_text'];
             
@@ -977,9 +985,10 @@ function display_quick_links_sidebar($connection,$portal_id,$topic_id,$sub_topic
         } else {
             $query_topic_id = $topic_id;
             $query = "SELECT * FROM links WHERE portal_id={$query_portal_id} AND topic_id={$query_topic_id} AND quicklink=1";
-            $result_set = mysqli_query($connection,$query);
+            global $db;
+            $result_set = $db->query($query);
         
-            while ($link = mysqli_fetch_assoc($result_set)){
+            while ($link = $db->fetch_assoc($result_set)){
                 $href = $link['link_href'];
                 $text = $link['link_text'];
             

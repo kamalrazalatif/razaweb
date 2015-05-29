@@ -13,22 +13,19 @@ $sub_topic_4_id = !empty($_GET['st4']) ? (int)$_GET['st4'] : 156;
 $category_id = !empty($_GET['c']) ? (int)$_GET['c'] : 156;
 
 
-
-// run find_sql select query to pull out links & content relevant to this page
-
 ?>
 <!-- bootstrap wrapper --------------------------------------------------------------------------------->
 <div class="container main-container">
 <!-- row 1 HEADER TITLE--------------------------------------------------------------------------->
 <?php if( $portal_id != 156 ): ?>
-        <header class="row">
-            <h1>
-            <?php
-                $header_title = display_header_title($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
-                echo $header_title;
-            ?>
-            </h1>
-        <!-- end row 1 --></header>
+    <header class="row">
+        <h1>
+        <?php
+            $header_title = display_header_title($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
+            echo $header_title;
+        ?>
+        </h1>
+    <!-- end row 1 --></header>
 <?php endif; ?>
 
 <!-- row 2 LOCAL/TOPIC navigation------------------------------------------------------------------------------->
@@ -151,7 +148,7 @@ $category_id = !empty($_GET['c']) ? (int)$_GET['c'] : 156;
 </section><!-- end left hand main content section ------------------------------------------------------------------------------------------------------------->
         
 <!-- quick-links-sidebar ----------------------------------------------------------------------------------------------------------------------->
-<?php display_quick_links_sidebar($connection,$portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id); ?>
+<?php display_quick_links_sidebar($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id); ?>
 
 <!-- end .row 5 --></div>
 
