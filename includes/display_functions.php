@@ -346,6 +346,396 @@ function display_header_title($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_
 
 
 // Navigation Functions ------------------------------------------------------------------------------------------------------------------------------------------------------------->
+function display_local_navigation($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id){
+    
+        if ($portal_id != 10 && $topic_id == 156 && $category_id != 156 && $sub_topic_1_id == 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){
+            // Portal & Category
+            display_local_nav_1($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
+                       
+        } elseif ($portal_id != 10 && $topic_id != 156 && $category_id == 156 && $sub_topic_1_id == 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){  
+            // Portal & Topic
+            display_local_nav_1($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
+  
+        } elseif ($portal_id != 10 && $topic_id != 156 && $category_id != 156 && $sub_topic_1_id == 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){  
+            // Portal, Topic & category
+            display_local_nav_1($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
+            
+        } elseif ($portal_id != 10 && $topic_id != 156 && $category_id == 156 && $sub_topic_1_id != 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){  
+            // Portal, Topic & sub topic 1
+            display_local_nav_1($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
+            display_local_nav_2($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
+            
+        } elseif ($portal_id != 10 && $topic_id != 156 && $category_id != 156 && $sub_topic_1_id != 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){  
+            // Portal, Topic, Sub topic 1 & Category
+            display_local_nav_1($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
+            
+        } elseif ($portal_id != 10 && $topic_id != 156 && $category_id == 156 && $sub_topic_1_id != 156 && $sub_topic_2_id != 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){  
+           // Portal, Topic, Sub topic 1 & Sub Topic 2
+            display_local_nav_1($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
+            display_local_nav_2($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
+            
+        } elseif ($portal_id != 10 && $topic_id != 156 && $category_id != 156 && $sub_topic_1_id != 156 && $sub_topic_2_id != 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){  
+            // Portal, Topic, Sub topic 1, Sub Topic 2 & category
+            display_local_nav_1($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
+            display_local_nav_2($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
+        } elseif ($portal_id != 10 && $topic_id != 156 && $category_id == 156 && $sub_topic_1_id != 156 && $sub_topic_2_id != 156 && $sub_topic_3_id != 156 && $sub_topic_4_id == 156){  
+            // Portal, Topic, Sub topic 1, Sub Topic 2 & Sub Topic 3
+            display_local_nav_1($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
+            
+        } elseif ($portal_id != 10 && $topic_id != 156 && $category_id != 156 && $sub_topic_1_id != 156 && $sub_topic_2_id != 156 && $sub_topic_3_id != 156 && $sub_topic_4_id == 156){  
+            // Portal, Topic, Sub topic 1, Sub Topic 2, Sub Topic 3 & Category
+            display_local_nav_1($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id); 
+            
+        } elseif ($portal_id != 10 && $topic_id != 156 && $category_id == 156 && $sub_topic_1_id != 156 && $sub_topic_2_id != 156 && $sub_topic_3_id != 156 && $sub_topic_4_id != 156){  
+            // Portal, Topic, Sub topic 1, Sub Topic 2, Sub Topic 3, & Sub Topic 4
+            display_local_nav_1($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
+            
+        } elseif ($portal_id != 10 && $topic_id != 156 && $category_id != 156 && $sub_topic_1_id != 156 && $sub_topic_2_id != 156 && $sub_topic_3_id != 156 && $sub_topic_4_id != 156){  
+            // Portal, Topic, Sub topic 1, Sub Topic 2, Sub Topic 3, Sub Topic 4 & Category
+            display_local_nav_1($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
+            
+        } else {
+            // Portal Only
+            display_local_nav_1($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
+        }
+}
+
+function display_local_nav_1($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id){
+    $output = "<div class=\"row\">";
+    $output .= "<nav class=\"navbar navbar-inverse navtopic\">";
+    $output .= "<div class=\"container\">";
+    $output .= "<div class=\"navbar-header\">";
+    $output .= "<button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-2\">";
+    $output .= "<span class=\"sr-only\">Toggle navigation</span>";
+    $output .= "<span class=\"icon-bar\"></span>";
+    $output .= "<span class=\"icon-bar\"></span>";
+    $output .= "<span class=\"icon-bar\"></span>";
+    $output .= "</button>";
+      
+    $output .= "<!-- END .NAVBAR-HEADER--></div>";
+    $output .= "<!-- Collect the nav links, forms, and other content for toggling -->";
+    $output .= "<div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-2\">";
+    $output .= "<ul class=\"nav navbar-nav\">";
+    
+    echo $output;
+    
+    if ($portal_id != 156 && $topic_id != 156 && $sub_topic_1_id == 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){
+     // Local Nav 1 is list of Sub Topic 1s and Categories for Topics or Topic & Category Only
+            // List of Categories for Topic Pages
+            $query = "SELECT * FROM category,category_topic_relationship WHERE topic_id={$topic_id} AND category_topic_relationship.category_id=category.id";
+            global $db;
+            $category_results = $db->query($query);
+            
+            while($category_data = $db->fetch_assoc($category_results)){
+                $link_category_id = $category_data['id'];
+                $category_title = $category_data['category_title'];
+                if($link_category_id == $category_id){
+                    $active_link = " class = \"active\" ";
+                } else {
+                    $active_link = null;
+                }
+                $output = "<li{$active_link}><a href=\"index.php?p={$portal_id}&amp;t={$topic_id}&amp;c={$link_category_id}\">{$category_title}</a></li>";
+                echo $output;
+            } // end while
+            
+    // List of Sub Topic 1's for Topic pages 
+            $query = "SELECT * FROM sub_topic_1 WHERE topic_id={$topic_id}";
+            $sub_topic_1s = SubTopic1::find_by_sql($query);
+
+            foreach($sub_topic_1s as $sub_topic1){
+                $link_sub_topic_1_id = $sub_topic1->id;
+                $link_sub_topic_1_title = $sub_topic1->sub_topic_1;
+                if($link_sub_topic_1_id == $sub_topic_1_id){
+                    $active_link = " class = \"active\" ";
+                } else {
+                    $active_link = null;
+                }
+                $output = "<li{$active_link}><a href=\"index.php?p={$portal_id}&amp;t={$topic_id}&amp;st1={$link_sub_topic_1_id}\">{$link_sub_topic_1_title}</a></li>";
+                echo $output;
+            } // end foreach loop
+            
+   }elseif ($portal_id != 156 && $topic_id != 156 && $sub_topic_1_id != 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){
+        // Local Nav 1 is list of Sub Topic 2s and Categories for Sub Topic 1s Only
+           // List of Categories for Topic Pages
+            $query = "SELECT * FROM category,category_topic_relationship WHERE topic_id={$topic_id} AND category_topic_relationship.category_id=category.id";
+            global $db;
+            $category_results = $db->query($query);
+            
+            while($category_data = $db->fetch_assoc($category_results)){
+                $link_category_id = $category_data['id'];
+                $category_title = $category_data['category_title'];
+                if($link_category_id == $category_id){
+                    $active_link = " class = \"active\" ";
+                } else {
+                    $active_link = null;
+                }
+                $output = "<li{$active_link}><a href=\"index.php?p={$portal_id}&amp;t={$topic_id}&amp;c={$link_category_id}\">{$category_title}</a></li>";
+                echo $output;
+            } // end while
+            
+    // List of Sub Topic 1's for Topic pages 
+            $query = "SELECT * FROM sub_topic_1 WHERE topic_id={$topic_id}";
+            $sub_topic_1s = SubTopic1::find_by_sql($query);
+
+            foreach($sub_topic_1s as $sub_topic1){
+                $link_sub_topic_1_id = $sub_topic1->id;
+                $link_sub_topic_1_title = $sub_topic1->sub_topic_1;
+                if($link_sub_topic_1_id == $sub_topic_1_id){
+                    $active_link = " class = \"active\" ";
+                } else {
+                    $active_link = null;
+                }
+                $output = "<li{$active_link}><a href=\"index.php?p={$portal_id}&amp;t={$topic_id}&amp;st1={$link_sub_topic_1_id}\">{$link_sub_topic_1_title}</a></li>";
+                echo $output;
+            } // end foreach loop
+   } elseif ($portal_id != 156 && $topic_id != 156 && $sub_topic_1_id != 156 && $sub_topic_2_id != 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){
+        // Local Nav 1 is list of Sub Topic 3s and Categories for Sub Topic 2s Only
+            // List of Categories for Sub_Topic_2 Pages
+            $query = "SELECT * FROM category,category_sub_topic_1_relationship WHERE sub_topic_1_id={$sub_topic_1_id} AND category_sub_topic_1_relationship.category_id=category.id";
+            global $db;
+            $category_results = $db->query($query);
+            
+            while($category_data = $db->fetch_assoc($category_results)){
+                $link_category_id = $category_data['id'];
+                $category_title = $category_data['category_title'];
+                if($link_category_id == $category_id){
+                    $active_link = " class = \"active\" ";
+                } else {
+                    $active_link = null;
+                }
+                $output = "<li{$active_link}><a href=\"index.php?p={$portal_id}&amp;t={$topic_id}&amp;st1={$sub_topic_1_id}&amp;c={$link_category_id}\">{$category_title}</a></li>";
+                echo $output;
+            } // end while
+            
+    //List of Sub Topic 2's for sub_Topic_1 pages 
+            $query = "SELECT * FROM sub_topic_2 WHERE sub_topic_1_id={$sub_topic_1_id} LIMIT 10";
+            $sub_topic_2s = SubTopic2::find_by_sql($query);
+
+            foreach($sub_topic_2s as $sub_topic2){
+                $link_sub_topic_2_id = $sub_topic2->id;
+                $link_sub_topic_2_title = $sub_topic2->sub_topic_2;
+                if($link_sub_topic_2_id == $sub_topic_2_id){
+                    $active_link = " class = \"active\" ";
+                } else {
+                    $active_link = null;
+                }
+                $output = "<li{$active_link}><a href=\"index.php?p={$portal_id}&amp;t={$topic_id}&amp;st1={$sub_topic_1_id}&amp;st2={$link_sub_topic_2_id}\">{$link_sub_topic_2_title}</a></li>";
+                echo $output;
+            } // end foreach loop       
+   } elseif ($portal_id != 156 && $topic_id != 156 && $sub_topic_1_id != 156 && $sub_topic_2_id != 156 && $sub_topic_3_id != 156 && $sub_topic_4_id == 156){
+        // Local Nav 1 is list of Sub Topic 4s and Categories for Sub Topic 3s Only
+            // List of Categories for Sub_Topic Pages
+            $query = "SELECT * FROM category,category_sub_topic_3_relationship WHERE sub_topic_3_id={$sub_topic_3_id} AND category_sub_topic_3_relationship.category_id=category.id";
+            global $db;
+            $category_results = $db->query($query);
+            
+            while($category_data = $db->fetch_assoc($category_results)){
+                $link_category_id = $category_data['id'];
+                $category_title = $category_data['category_title'];
+                if($link_category_id == $category_id){
+                    $active_link = " class = \"active\" ";
+                } else {
+                    $active_link = null;
+                }
+                $output = "<li{$active_link}><a href=\"index.php?p={$portal_id}&amp;t={$topic_id}&amp;st1={$sub_topic_1_id}&amp;c={$link_category_id}\">{$category_title}</a></li>";
+                echo $output;
+            } // end while
+            
+    // List of Sub Topic 2's for Topic pages 
+            $query = "SELECT * FROM sub_topic_4 WHERE sub_topic_3_id={$sub_topic_3_id}";
+            $sub_topic_4s = SubTopic4::find_by_sql($query);
+
+            foreach($sub_topic_4s as $sub_topic4){
+                $link_sub_topic_4_id = $sub_topic4->id;
+                $link_sub_topic_4_title = $sub_topic4->sub_topic_4;
+                if($link_sub_topic_4_id == $sub_topic_4_id){
+                    $active_link = " class = \"active\" ";
+                } else {
+                    $active_link = null;
+                }
+                $output = "<li{$active_link}><a href=\"index.php?p={$portal_id}&amp;t={$topic_id}&amp;st1={$sub_topic_1_id}&amp;st2={$link_sub_topic_2_id}&amp;st2={$link_sub_topic_3_id}&amp;st2={$link_sub_topic_4_id}\">{$link_sub_topic_4_title}</a></li>";
+                echo $output;
+            } // end foreach loop           
+   } elseif ($portal_id != 156 && $topic_id != 156 && $sub_topic_1_id != 156 && $sub_topic_2_id != 156 && $sub_topic_3_id != 156 && $sub_topic_4_id != 156){
+        // Local Nav 1 is list of Categories for Sub Topic 4s Only
+            // List of Categories for Sub_Topic Pages
+            $query = "SELECT * FROM category,category_sub_topic_4_relationship WHERE sub_topic_4_id={$sub_topic_4_id} AND category_sub_topic_4_relationship.category_id=category.id";
+            global $db;
+            $category_results = $db->query($query);
+            
+            while($category_data = $db->fetch_assoc($category_results)){
+                $link_category_id = $category_data['id'];
+                $category_title = $category_data['category_title'];
+                if($link_category_id == $category_id){
+                    $active_link = " class = \"active\" ";
+                } else {
+                    $active_link = null;
+                }
+                $output = "<li{$active_link}><a href=\"index.php?p={$portal_id}&amp;t={$topic_id}&amp;st1={$sub_topic_1_id}&amp;c={$link_category_id}\">{$category_title}</a></li>";
+                echo $output;
+            } // end while
+        
+   } else {
+        // Portal AND Portal & Category only Pages Navigation Bar
+        // Local Nav 1 is list of Topics and Categories for Portal Only
+            $query = "SELECT * FROM portal_topic_status WHERE portal_id={$portal_id} LIMIT 1";
+            global $db;
+            $result = $db->query($query);
+            $data = $db->fetch_assoc($result);
+            $topic_status_id = $data['topic_status_id'];
+
+                    
+        if($topic_status_id == 0){ // List of Portal's Categories if relevant
+            
+            $query = "SELECT * FROM category,portal_category_relationship WHERE portal_id={$portal_id} AND portal_category_relationship.category_id=category.id";
+            global $db;
+            $result = $db->query($query);
+            
+            while($portal_category_data = $db->fetch_assoc($result)){
+                $link_category_id = $portal_category_data['id'];
+                $category_title = $portal_category_data['category_title'];
+            
+                if($link_category_id == $category_id){
+                    $active_link = " class = \"active\" ";
+                } else {
+                    $active_link = null;
+                }
+            
+                $output = "<li{$active_link}><a href=\"index.php?p={$portal_id}&amp;c={$link_category_id}\">{$category_title}</a></li>";
+                echo $output;
+            
+            } // end CATEGORY while Loop
+            
+        }// end topic status if
+                $query = "SELECT * FROM topics WHERE portal_id={$portal_id} AND navbar=1";
+                $topics = Topic::find_by_sql($query);
+                
+                foreach($topics as $topic){
+                    $link_topic_id = $topic->id;
+                    $topic_title = $topic->topic;
+                    if($link_topic_id == $topic_id){
+                        $active_link = " class = \"active\" ";
+                    } else {
+                        $active_link = null;
+                    }
+                    $output = "<li{$active_link}><a href=\"index.php?p={$portal_id}&amp;t={$link_topic_id}\">{$topic_title}</a></li>";
+                    echo $output;
+                } // END TOPICS FOREACH LOOP
+    
+   } // end if
+                      
+    $output = "</ul>";
+    $output .= "<!-- /.navbar-collapse --></div>";
+    $output .= "<!-- /.container-fluid --></div>";
+    $output .= "</nav>";
+    $output .= "<!-- end row 2 LOCAL NAV--></div>";
+    
+    echo $output;
+}
+
+function display_local_nav_2($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id){
+    
+    
+        
+    $output = "<div class=\"row\">";
+    $output .= "<nav class=\"navbar navbar-inverse navcat\">";
+    $output .= "<div class=\"container\">";
+    $output .= "<div class=\"navbar-header\">";
+    $output .= "<button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-4\">";
+    $output .= "<span class=\"sr-only\">Toggle navigation</span>";
+    $output .= "<span class=\"icon-bar\"></span>";
+    $output .= "<span class=\"icon-bar\"></span>";
+    $output .= "<span class=\"icon-bar\"></span>";
+    $output .= "</button>";
+      
+    $output .= "<!-- END .NAVBAR-HEADER--></div>";
+    $output .= "<!-- Collect the nav links, forms, and other content for toggling -->";
+    $output .= "<div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-4\">";
+    $output .= "<ul class=\"nav navbar-nav\">";
+    
+    echo $output;
+    
+    if ($portal_id != 156 && $topic_id != 156 && $sub_topic_1_id != 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){
+    // List of Categories for Sub_Topic Pages
+            $query = "SELECT * FROM category,category_sub_topic_1_relationship WHERE sub_topic_1_id={$sub_topic_1_id} AND category_sub_topic_1_relationship.category_id=category.id";
+            global $db;
+            $category_results = $db->query($query);
+            
+            while($category_data = $db->fetch_assoc($category_results)){
+                $link_category_id = $category_data['id'];
+                $category_title = $category_data['category_title'];
+                if($link_category_id == $category_id){
+                    $active_link = " class = \"active\" ";
+                } else {
+                    $active_link = null;
+                }
+                $output = "<li{$active_link}><a href=\"index.php?p={$portal_id}&amp;t={$topic_id}&amp;st1={$sub_topic_1_id}&amp;c={$link_category_id}\">{$category_title}</a></li>";
+                echo $output;
+            } // end while
+            
+    // List of Sub Topic 2's for Topic pages 
+            $query = "SELECT * FROM sub_topic_2 WHERE sub_topic_1_id={$sub_topic_1_id} LIMIT 10";
+            $sub_topic_2s = SubTopic2::find_by_sql($query);
+
+            foreach($sub_topic_2s as $sub_topic2){
+                $link_sub_topic_2_id = $sub_topic2->id;
+                $link_sub_topic_2_title = $sub_topic2->sub_topic_2;
+                if($link_sub_topic_2_id == $sub_topic_2_id){
+                    $active_link = " class = \"active\" ";
+                } else {
+                    $active_link = null;
+                }
+                $output = "<li{$active_link}><a href=\"index.php?p={$portal_id}&amp;t={$topic_id}&amp;st1={$sub_topic_1_id}&amp;st2={$link_sub_topic_2_id}\">{$link_sub_topic_2_title}</a></li>";
+                echo $output;
+            } // end foreach loop
+            
+            
+    } elseif ($portal_id != 156 && $topic_id != 156 && $sub_topic_1_id != 156 && $sub_topic_2_id != 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){
+        // Local Nav 1 is list of Sub Topic 3s and Categories for Sub Topic 2s Only
+            // List of Categories for Sub_Topic_2 Pages
+            $query = "SELECT * FROM category,category_sub_topic_2_relationship WHERE sub_topic_2_id={$sub_topic_2_id} AND category_sub_topic_2_relationship.category_id=category.id";
+            global $db;
+            $category_results = $db->query($query);
+            
+            while($category_data = $db->fetch_assoc($category_results)){
+                $link_category_id = $category_data['id'];
+                $category_title = $category_data['category_title'];
+                if($link_category_id == $category_id){
+                    $active_link = " class = \"active\" ";
+                } else {
+                    $active_link = null;
+                }
+                $output = "<li{$active_link}><a href=\"index.php?p={$portal_id}&amp;t={$topic_id}&amp;st1={$sub_topic_1_id}&amp;st2={$sub_topic_2_id}&amp;c={$link_category_id}\">{$category_title}</a></li>";
+                echo $output;
+            } // end while
+            
+    /*List of Sub Topic 3's for sub_Topic_2 pages 
+            $query = "SELECT * FROM sub_topic_3 WHERE sub_topic_2_id={$sub_topic_2_id}";
+            $sub_topic_3s = SubTopic3::find_by_sql($query);
+
+            foreach($sub_topic_3s as $sub_topic3){
+                $link_sub_topic_3_id = $sub_topic3->id;
+                $link_sub_topic_3_title = $sub_topic3->sub_topic_3;
+                if($link_sub_topic_3_id == $sub_topic_3_id){
+                    $active_link = " class = \"active\" ";
+                } else {
+                    $active_link = null;
+                }
+                $output = "<li{$active_link}><a href=\"index.php?p={$portal_id}&amp;t={$topic_id}&amp;st1={$sub_topic_1_id}&amp;st2={$link_sub_topic_2_id}&amp;st3={$link_sub_topic_3_id}\">{$link_sub_topic_3_title}</a></li>";
+                echo $output;
+            } // end foreach loop   */         
+    }
+    
+    $output = "</ul>";
+    $output .= "<!-- /.navbar-collapse --></div>";
+    $output .= "<!-- /.container-fluid --></div>";
+    $output .= "</nav>";
+    $output .= "<!-- end row 3 Cateogry Navigation--></div>";
+    
+    echo $output;
+    
+} // END FUNCTION DISPLAY_LOCAL_NAVIGATION_2
+
 //PORTAL NAVIGATION
 function display_portal_navigation($portal_id,$category_id,$topic_id){
     
@@ -367,7 +757,9 @@ function display_portal_navigation($portal_id,$category_id,$topic_id){
     
     echo $output;
     
-    // Portal Pages Navigation Bar
+    if($portal_id != 156 && $topic_id == 156 && $category_id == 156 && $sub_topic_1_id == 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){
+        // Portal Pages Navigation Bar
+        // Local Nav 1 is list of Topics and Categories for Portal Only
     $query = "SELECT * FROM portal_topic_status WHERE portal_id={$portal_id} LIMIT 1";
     global $db;
     $result = $db->query($query);
@@ -394,11 +786,10 @@ function display_portal_navigation($portal_id,$category_id,$topic_id){
                 $output = "<li{$active_link}><a href=\"index.php?p={$portal_id}&amp;c={$link_category_id}\">{$category_title}</a></li>";
                 echo $output;
             
-            } // end while
+            } // end CATEGORY while Loop
             
-        } // end topic status if
+        }// end topic status if
                 $query = "SELECT * FROM topics WHERE portal_id={$portal_id} AND navbar=1";
-                
                 $topics = Topic::find_by_sql($query);
                 
                 foreach($topics as $topic){
@@ -411,7 +802,80 @@ function display_portal_navigation($portal_id,$category_id,$topic_id){
                     }
                     $output = "<li{$active_link}><a href=\"index.php?p={$portal_id}&amp;t={$link_topic_id}\">{$topic_title}</a></li>";
                     echo $output;
+                } // END TOPICS FOREACH LOOP
+   } elseif ($portal_id != 156 && $topic_id != 156 && $category_id == 156 && $sub_topic_1_id == 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){
+     // Local Nav 1 is list of Sub Topic 1s and Categories for Topics Only
+            // List of Categories for Topic Pages
+            $query = "SELECT * FROM category,category_topic_relationship WHERE topic_id={$topic_id} AND category_topic_relationship.category_id=category.id";
+            global $db;
+            $category_results = $db->query($query);
+            
+            while($category_data = $db->fetch_assoc($category_results)){
+                $link_category_id = $category_data['id'];
+                $category_title = $category_data['category_title'];
+                if($link_category_id == $category_id){
+                    $active_link = " class = \"active\" ";
+                } else {
+                    $active_link = null;
                 }
+                $output = "<li{$active_link}><a href=\"index.php?p={$portal_id}&amp;t={$topic_id}&amp;c={$link_category_id}\">{$category_title}</a></li>";
+                echo $output;
+            } // end while
+            
+    // List of Sub Topic 1's for Topic pages 
+            $query = "SELECT * FROM sub_topic_1 WHERE topic_id={$topic_id}";
+            $sub_topic_1s = SubTopic1::find_by_sql($query);
+
+            foreach($sub_topic_1s as $sub_topic1){
+                $link_sub_topic_1_id = $sub_topic1->id;
+                $link_sub_topic_1_title = $sub_topic1->sub_topic_1;
+                if($link_sub_topic_1_id == $sub_topic_1_id){
+                    $active_link = " class = \"active\" ";
+                } else {
+                    $active_link = null;
+                }
+                $output = "<li{$active_link}><a href=\"index.php?p={$portal_id}&amp;t={$topic_id}&amp;st1={$link_sub_topic_1_id}\">{$link_sub_topic_1_title}</a></li>";
+                echo $output;
+            } // end foreach loop           
+   }elseif ($portal_id != 156 && $topic_id != 156 && $category_id == 156 && $sub_topic_1_id != 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){
+        // Local Nav 1 is list of Sub Topic 2s and Categories for Sub Topic 1s Only
+            // List of Categories for Sub_Topic Pages
+            $query = "SELECT * FROM category,category_sub_topic_1_relationship WHERE sub_topic_1_id={$sub_topic_1_id} AND category_sub_topic_1_relationship.category_id=category.id";
+            global $db;
+            $category_results = $db->query($query);
+            
+            while($category_data = $db->fetch_assoc($category_results)){
+                $link_category_id = $category_data['id'];
+                $category_title = $category_data['category_title'];
+                if($link_category_id == $category_id){
+                    $active_link = " class = \"active\" ";
+                } else {
+                    $active_link = null;
+                }
+                $output = "<li{$active_link}><a href=\"index.php?p={$portal_id}&amp;t={$topic_id}&amp;st1={$sub_topic_1_id}&amp;c={$link_category_id}\">{$category_title}</a></li>";
+                echo $output;
+            } // end while
+            
+    // List of Sub Topic 2's for Topic pages 
+            $query = "SELECT * FROM sub_topic_2 WHERE sub_topic_1_id={$sub_topic_1_id}";
+            $sub_topic_2s = SubTopic2::find_by_sql($query);
+
+            foreach($sub_topic_2s as $sub_topic2){
+                $link_sub_topic_2_id = $sub_topic2->id;
+                $link_sub_topic_2_title = $sub_topic2->sub_topic_2;
+                if($link_sub_topic_2_id == $sub_topic_2_id){
+                    $active_link = " class = \"active\" ";
+                } else {
+                    $active_link = null;
+                }
+                $output = "<li{$active_link}><a href=\"index.php?p={$portal_id}&amp;t={$topic_id}&amp;st1={$sub_topic_1_id}&amp;st2={$link_sub_topic_2_id}\">{$link_sub_topic_2_title}</a></li>";
+                echo $output;
+            } // end foreach loop           
+   }
+   
+    
+    
+    
                           
     $output = "</ul>";
     $output .= "<!-- /.navbar-collapse --></div>";
@@ -427,7 +891,7 @@ function display_portal_navigation($portal_id,$category_id,$topic_id){
 function display_topic_navigation($portal_id,$category_id,$topic_id,$sub_topic_1_id){
     
     $output = "<div class=\"row\">";
-    $output .= "<nav class=\"navbar navbar-inverse navcat\">";
+    $output .= "<nav class=\"navbar navbar-inverse navtopic\">";
     $output .= "<div class=\"container\">";
     $output .= "<div class=\"navbar-header\">";
     $output .= "<button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-3\">";
@@ -488,6 +952,72 @@ function display_topic_navigation($portal_id,$category_id,$topic_id,$sub_topic_1
     
 } // end function display_topic_navigation
 
+
+
+//SUB TOPIC 1 NAVIGATION
+function display_sub_topic_1_navigation($portal_id,$category_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id){
+    
+    $output = "<div class=\"row\">";
+    $output .= "<nav class=\"navbar navbar-inverse navcat\">";
+    $output .= "<div class=\"container\">";
+    $output .= "<div class=\"navbar-header\">";
+    $output .= "<button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-4\">";
+    $output .= "<span class=\"sr-only\">Toggle navigation</span>";
+    $output .= "<span class=\"icon-bar\"></span>";
+    $output .= "<span class=\"icon-bar\"></span>";
+    $output .= "<span class=\"icon-bar\"></span>";
+    $output .= "</button>";
+      
+    $output .= "<!-- END .NAVBAR-HEADER--></div>";
+    $output .= "<!-- Collect the nav links, forms, and other content for toggling -->";
+    $output .= "<div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-4\">";
+    $output .= "<ul class=\"nav navbar-nav\">";
+    
+    echo $output;
+    
+    // List of Categories for Sub_Topic Pages
+            $query = "SELECT * FROM category,category_sub_topic_1_relationship WHERE sub_topic_1_id={$sub_topic_1_id} AND category_sub_topic_1_relationship.category_id=category.id";
+            global $db;
+            $category_results = $db->query($query);
+            
+            while($category_data = $db->fetch_assoc($category_results)){
+                $link_category_id = $category_data['id'];
+                $category_title = $category_data['category_title'];
+                if($link_category_id == $category_id){
+                    $active_link = " class = \"active\" ";
+                } else {
+                    $active_link = null;
+                }
+                $output = "<li{$active_link}><a href=\"index.php?p={$portal_id}&amp;t={$topic_id}&amp;st1={$sub_topic_1_id}&amp;c={$link_category_id}\">{$category_title}</a></li>";
+                echo $output;
+            } // end while
+            
+    // List of Sub Topic 2's for Topic pages 
+            $query = "SELECT * FROM sub_topic_2 WHERE sub_topic_1_id={$sub_topic_1_id}";
+            $sub_topic_2s = SubTopic2::find_by_sql($query);
+
+            foreach($sub_topic_2s as $sub_topic2){
+                $link_sub_topic_2_id = $sub_topic2->id;
+                $link_sub_topic_2_title = $sub_topic2->sub_topic_2;
+                if($link_sub_topic_2_id == $sub_topic_2_id){
+                    $active_link = " class = \"active\" ";
+                } else {
+                    $active_link = null;
+                }
+                $output = "<li{$active_link}><a href=\"index.php?p={$portal_id}&amp;t={$topic_id}&amp;st1={$sub_topic_1_id}&amp;st2={$link_sub_topic_2_id}\">{$link_sub_topic_2_title}</a></li>";
+                echo $output;
+            } // end foreach loop           
+                         
+    $output = "</ul>";
+    $output .= "<!-- /.navbar-collapse --></div>";
+    $output .= "<!-- /.container-fluid --></div>";
+    $output .= "</nav>";
+    $output .= "<!-- end row 3 Cateogry Navigation--></div>";
+    
+    echo $output;
+    
+    
+} // end function display_sub_topic_1_navigation
 
 
 // BREADRCUMBS

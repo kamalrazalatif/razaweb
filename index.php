@@ -29,14 +29,8 @@ $category_id = !empty($_GET['c']) ? (int)$_GET['c'] : 156;
 <?php endif; ?>
 
 <!-- row 2 LOCAL/TOPIC navigation------------------------------------------------------------------------------->
-<?php if( $portal_id != 156 ): ?>
-<?php display_portal_navigation($portal_id,$category_id,$topic_id); ?>
-<?php endif; ?>
-
-<!-- row 3 LOCAL/Category navigation--------------------------------------------------------------------------------------->
-
-<?php if (!empty($_GET['t'])): ?>
-<?php display_topic_navigation($portal_id,$category_id,$topic_id,$sub_topic_1_id); ?>
+<?php if($portal_id != 156): ?>
+<?php display_local_navigation($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id); ?>
 <?php endif; ?>
     
 <!-- row 4 breadcrumb div------------------------------------------------------------------------------------------------------>
