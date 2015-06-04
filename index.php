@@ -41,11 +41,18 @@ $category_id = !empty($_GET['c']) ? (int)$_GET['c'] : 156;
     
 <!-- row 4 breadcrumb div------------------------------------------------------------------------------------------------------>
 <?php display_breadcrumbs($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id); ?>
-        
+   
 <!-- row 5 CONTENT - main content section AND Quicklinks sidebar ------------------------------------------------------------------------------------------------------------------------------------------------------------------>
 <div class="row"><!-- row 5 - left content div and quick links side bar -->
 <!-- main content - left side div - content box and/or tabbed panel -------------------------------------------------------------------------->
 <section class="col-sm-9">
+    <?php if($portal_id == 156) : ?>
+    <div class="link-box">
+    <?php welcome_box(); ?>
+    <!-- end .link-box --></div>
+    <?php endif; ?>
+   
+    
             <!-- upper/ 1st main-content-box ----------------------------------------------------------------------->
             <div class="wrap-box">
 <!-- main-content-box header ----------------------------------------------------------------->

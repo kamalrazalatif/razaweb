@@ -5,8 +5,7 @@
 //set up file
 require_once("initialize.php");
 
-//file meta head info ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
-
+//file META HEAD info ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
 function generate_meta_keywords($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id){
     
     if ($portal_id != 10 && $topic_id == 156 && $category_id == 156 && $sub_topic_1_id == 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){
@@ -219,6 +218,8 @@ function display_page_title($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id
     
 } // end function display_page_title
 
+
+//WEB PAGE FUNCTIONS
 // Web Page Header ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
 function display_header_title($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id){
     
@@ -693,13 +694,64 @@ function display_breadcrumbs($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_i
         echo "</ol><!-- end row 4 breadcrumb div --></div>";
         
     } else {
-        echo "<div><p>Welcome To RazaWeb Slide Show Div</p></div>";
+        echo "<br />";
     }
     
 } // end display_breadcrumbs function
 
-// Content-Box Functions --------------------------------------------------------------------------------------------------------------------------------------------------->
+// WEKLCOME BOX
+function welcome_box(){
+    
+            echo "<div class=\"row\">";
+            
+            $welcome_text = "<h2>Welcome to Razaweb.com, Knowledge sharing on the web.</h2><p>Razaweb is a content categorisation and aggregation site with links to multimedia content such as articles, websites, videos and resources, from a diverse range of sources, for the following topics:</p>";
+            echo $welcome_text;
+            echo "<!-- end .row --></div>";
+            
+            echo "<div class=\"row\">";
+            
+            $query = "SELECT * FROM portals WHERE tabpanel=1 LIMIT 4";
+        
+            global $db;
+            $result = $db->query($query);
+            while($data = $db->fetch_assoc($result)){
+                $link_portal_id = $data['id'];
+                $link_portal_title = $data['portal'];
+                $link_portal_pic = $data['portal_pic'];
+                
+                $output = "<div class=\"col-sm-3\"><a href=\"index.php?p={$link_portal_id}\" class=\"thumbnail port-pic\"><p class=\"port-pic-p\">{$link_portal_title}</p><img class=\"img-responsive\" src=\"assets/images/uploads/portpic/{$link_portal_pic}\" /></a></div>";
+                
+                echo $output;
+            } // END WHILE LOOP
+            
+            echo "<!-- end .row --></div>";
+            echo "<div class=\"row\">";
+            
+            $query = "SELECT * FROM portals WHERE tabpanel=1 LIMIT 4 OFFSET 4";
+            global $db;
+            $result = $db->query($query);
+            while($data = $db->fetch_assoc($result)){
+                $link_portal_id = $data['id'];
+                $link_portal_title = $data['portal'];
+                $link_portal_pic = $data['portal_pic'];
+                
+                $output = "<div class=\"col-sm-3\"><a href=\"index.php?p={$link_portal_id}\" class=\"thumbnail port-pic\"><p class=\"port-pic-p\">{$link_portal_title}</p><img class=\"img-responsive\" src=\"assets/images/uploads/portpic/{$link_portal_pic}\" /></a></div>";
+                
+                echo $output;
+            } // END WHILE LOOP
+            
+            echo "<!-- end .row --></div>";
+            
+            echo "<div class=\"row\">";
+            echo "<br />";
+            echo "<p><a href=\"about.php\">To find out About Us, our history, our mission and what RazaWeb is all about, click here</a></p>";
+            echo "<p><a href=\"contact.php\">To Contact Us, click here</a></p>";
+            echo "<!-- end .row --></div>";
+            
+           
+} // end funciton welcome_box()
 
+// Content-Box Functions --------------------------------------------------------------------------------------------------------------------------------------------------->
 // display_content_box_header function
 function display_content_box_header($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id){
     
@@ -832,56 +884,20 @@ function display_content_box_content($portal_id,$topic_id,$sub_topic_1_id,$sub_t
             
         } else {
                         
-                        //Welcome
-                        $welcome_box = welcome_box();
-                        
-                        //Blog Post
-                        $query = "SELECT * FROM blog_posts WHERE portal_id=10 LIMIT 1";
-                        global $db;
-                        $result = $db->query($query);
-                        $data = $db->fetch_assoc($result);
-                        $blog_post = $data['post_content'];
-            
-            
-            $output= "{$welcome_box}<div class=\"row\"><p>{$blog_post}</p></div>";
+            //Blog Post
+            $query = "SELECT * FROM blog_posts WHERE portal_id=10 LIMIT 1";
+            global $db;
+            $result = $db->query($query);
+            $data = $db->fetch_assoc($result);
+            $blog_post = $data['post_content'];
+
+            $output= "<div class=\"row\"><p>{$blog_post}</p></div>";
         }
         
         return $output;
 }
 
-function welcome_box(){
-    
-            echo "<div class=\"row\">";
-            
-            $welcome_text = "<p>Welcome to Razaweb.com, a content aggregation site with links to multimedia content such as articles, websites, videos and resources, from a diverse range of sources, for the following topics:</p>";
-            echo $welcome_text;
-            echo "<!-- end .row --></div>";
-            
-            echo "<div class=\"row\">";
-            
-            $query = "SELECT * FROM portals WHERE tabpanel=1";
-        
-            global $db;
-            $result = $db->query($query);
-            while($data = $db->fetch_assoc($result)){
-                $link_portal_id = $data['id'];
-                $link_portal_title = $data['portal'];
-                $link_portal_pic = $data['portal_pic'];
-                
-                $output = "<div class=\"col-sm-3\"><a href=\"index.php?p={$link_portal_id}\"><p class=\"port-pic-p\">{$link_portal_title}</p><img class=\"img-responsive\" src=\"assets/images/uploads/portpic/{$link_portal_pic}\" /></a></div>";
-                
-                echo $output;
-            }
-            
-            echo "<!-- end .row --></div>";
-            
-            echo "<div class=\"row\">";
-            echo "<p><a href=\"about.php\">To find out About Us, our history, our mission and what RazaWeb is all about, click here</a></p>";
-            echo "<p><a href=\"contact.php\">To Contact Us, click here</a></p>";
-            echo "<!-- end .row --></div>";
-            
-           
-}
+
 
 function top_links($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id){
     

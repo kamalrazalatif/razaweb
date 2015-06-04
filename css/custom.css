@@ -311,4 +311,20 @@ border-bottom-color: #ffffff;
 	padding: 2px;
 }
 
+.welcome-text{
+	font-size: 1.0em;
+	font-weight: bold;
+}
+
+/*a.port-pic:hover{
+	transition-property: all;
+  transition-duration: 0.25s;
+  transition-timing-function: ease-in;
+  transition-delay: initial;
+}*/
+
+a.port-pic:hover{
+border-width: 2px;
+}
+
 
