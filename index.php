@@ -44,8 +44,8 @@ $category_id = !empty($_GET['c']) ? (int)$_GET['c'] : 156;
         
 <!-- row 5 CONTENT - main content section AND Quicklinks sidebar ------------------------------------------------------------------------------------------------------------------------------------------------------------------>
 <div class="row"><!-- row 5 - left content div and quick links side bar -->
-    <!-- main content - left side div - content box and/or tabbed panel -------------------------------------------------------------------------->
-    <section class="col-sm-9">
+<!-- main content - left side div - content box and/or tabbed panel -------------------------------------------------------------------------->
+<section class="col-sm-9">
             <!-- upper/ 1st main-content-box ----------------------------------------------------------------------->
             <div class="wrap-box">
 <!-- main-content-box header ----------------------------------------------------------------->
@@ -69,82 +69,16 @@ $category_id = !empty($_GET['c']) ? (int)$_GET['c'] : 156;
             <br class="clearfloat" />
             <!-- end link-box .row --></div>
 <!-- end . wrap-box END MAIN CONTENT BOX--></div>
-
-      
-<?php if($category_id == 156) : ?>
-          
+        
 <!-- Second content box - tabbed panel portal --------------------------------------------------------------------------------------------------------------------------->
-<div class="row"><!-- row ? - tabbed pannel content box row -->  
-<div class="section-box">                
-<div class="bs-example">
-	  <ul class="nav nav-tabs" id="myTab">
-            <?php if($portal_id == 156) : ?>
-                <?php
-                    
-                    $query = "SELECT * FROM portals WHERE tabpanel=1";
-                    $result = mysqli_query($connection,$query);
-                    while($data = mysqli_fetch_assoc($result)){
-                        $href = "#" . $data['portal'];
-                        $tab = $data['portal'];
-                        $output = "<li><a data-toggle=\"tab\" href=\"{$href}\">{$tab}</a></li>";
-                        echo $output;
-                    }
-                    
-                ?>
-            <?php elseif($portal_id == 1) : ?>
-                <?php
-                    
-                    $query = "SELECT * FROM topics WHERE portal_id={$portal_id}";
-                    $result = mysqli_query($connection,$query);
-                    while($data = mysqli_fetch_assoc($result)){
-                        $href = "#" . $data['topic'];
-                        $tab = $data['topic'];
-                        $output = "<li><a data-toggle=\"tab\" href=\"{$href}\">{$tab}</a></li>";
-                        echo $output;
-                    }
-                    
-                ?>
-                
-            <?php endif; ?>        
-	</ul>
-<div class="tab-content">
-    <?php if($portal_id == 156) : ?>   
-        <?php
-                    
-            $query = "SELECT * FROM portals WHERE tabpanel=1";
-            $result = mysqli_query($connection,$query);
-            while($data = mysqli_fetch_assoc($result)){
-                $tab_portal_id = $data['id'];
-                $div_id = $data['portal'];
-                $tab = $data['portal'];
-                $output = "<div id=\"{$div_id}\" class=\"tab-pane fade in active\"><div class=\"panel-block\"><div class=\"row panel-summary\"><ul>";
-                echo $output;
-                
-                    $query = "SELECT * FROM topics WHERE portal_id={$tab_portal_id} AND navbar=1";
-                    $intro_topic_result = mysqli_query($connection,$query);
-                        while($topic_data = mysqli_fetch_assoc($intro_topic_result)){
-                            $link_topic_id = $topic_data['id'];
-                            $topic_title = $topic_data['topic'];
-                            $topic_pic = $topic_data['topic_pic'];
-                            $link_portal_id = $topic_data['portal_id'];
+<?php
 
-                            $output = "<div class=\"col-lg-2\"><a href=\"index.php?p={$link_portal_id}&amp;t={$link_topic_id}\"><img class=\"img-responsive\" src=\"assets/images/homepage/tabbedpanel/{$div_id}/{$topic_pic}\" /></a></div>";
-                            echo $output;
-                        }
-                        
-                echo "<!-- end dynamically generated link list --></ul><!-- end .panel-summary--></div><br class=\"clearfloat\" /><!-- end .panel-block--></div><!-- end TAB #sectionA --></div>";        
-            }
-                    
-        ?>
-<?php endif; ?>
-<br class="clearfloat" />
-<!-- end .tab-content--></div>
-<br class="clearfloat" />
-<!-- end .bs-example--></div>
-<br class="clearfloat" />
-  <!-- end .section-box --></div>
-<!-- end section-box .row --></div>
-<?php endif; ?>          
+if($category_id == 156){
+    display_tabbed_panel_box($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
+}
+
+?>
+       
 </section><!-- end left hand main content section ------------------------------------------------------------------------------------------------------------->
         
 <!-- quick-links-sidebar ----------------------------------------------------------------------------------------------------------------------->
