@@ -12,7 +12,7 @@
                 <li><a href="index.php?p=8">Science</a> | </li>
                 <li><a href="contact.php">Contact</a></li>
           </ul>
-            <p>&copy; Kamal Raza Latif 2015</p>
+            <p><a href="http://www.kamallatif.com">&copy; Kamal Raza Latif 2015</a></p>
 </footer>
     <!-- end .container--></div>
 </body>

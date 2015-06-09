@@ -37,55 +37,9 @@ $category_id = !empty($_GET['c']) ? (int)$_GET['c'] : 156;
 <?php display_breadcrumbs($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id); ?>
    
 <!-- row 5 CONTENT - main content section AND Quicklinks sidebar ------------------------------------------------------------------------------------------------------------------------------------------------------------------>
-<div class="row"><!-- row 5 - left content div and quick links side bar -->
-<!-- main content - left side div - content box and/or tabbed panel -------------------------------------------------------------------------->
-<section class="col-sm-9">
-    <?php if($portal_id == 156) : ?>
-    <div class="link-box">
-    <?php welcome_box(); ?>
-    <!-- end .link-box --></div>
-    <?php endif; ?>
-   
-    
-            <!-- upper/ 1st main-content-box ----------------------------------------------------------------------->
-            <div class="wrap-box">
-<!-- main-content-box header ----------------------------------------------------------------->
-            <header class="row">        
-                <?php
-                
-                $box_title = display_content_box_header($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
-                echo $box_title;
-                
-                ?>                         
-            </header>
-<!-- main-content-box content ------------------------------------------------------------------------->
-            <div class="row link-box">
-            <!-- First Content Box - This Week -->
-                <?php
-            
-                $content_box_content = display_content_box_content($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
-                echo $content_box_content;
-                
-                ?>
-            <br class="clearfloat" />
-            <!-- end link-box .row --></div>
-<!-- end . wrap-box END MAIN CONTENT BOX--></div>
-        
-<!-- Second content box - tabbed panel portal --------------------------------------------------------------------------------------------------------------------------->
-<?php
-
-if($category_id == 156){
-    display_tabbed_panel_box($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
-}
-
-?>
-       
-</section><!-- end left hand main content section ------------------------------------------------------------------------------------------------------------->
-        
-<!-- quick-links-sidebar ----------------------------------------------------------------------------------------------------------------------->
-<?php display_quick_links_sidebar($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id); ?>
-
-<!-- end .row 5 --></div>
-
+<div class="row">
+<?php display_content($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id); ?>
+<!-- end .row --></div>
+<br class="clearfloat" />
 <!-- FOOTER -------------------------------------------------------------------------------------------------------------------------------------------------->        
 <?php require_once("includes/footer.php"); ?>

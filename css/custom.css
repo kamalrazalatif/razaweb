@@ -327,4 +327,10 @@ a.port-pic:hover{
 border-width: 2px;
 }
 
+.tn-link-text{
+	background-color: #9CF;
+	color: #333;
+	padding: 2px;
+}
+
 
