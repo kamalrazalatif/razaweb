@@ -1251,7 +1251,7 @@ function display_main_content($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_
 
     if($portal_id != 156 && $topic_id == 156 && $category_id == 156 && $sub_topic_1_id == 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){
         // Portal Home Pages Only
-        echo display_blog_post($portal_id);
+        echo display_blog_post_excerpt($portal_id);
         //display_links_box($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
         display_tabbed_panel_box($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
     } elseif($portal_id != 156 && $topic_id == 156 && $category_id != 156 && $sub_topic_1_id == 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){
@@ -1342,6 +1342,52 @@ function welcome_box(){
 } // end function welcome_box()
 
 // Content-Box Functions --------------------------------------------------------------------------------------------------------------------------------------------------->
+// BLOG POST Box
+function display_blog_post_excerpt($portal_id){
+    global $db;
+    if($portal_id == 156){
+        // Website Root Home Page - $portal_id == 156
+        $query = "SELECT * FROM blog_posts WHERE portal_id=10 LIMIT 1";
+        $result = $db->query($query);
+        $data = $db->fetch_assoc($result);
+        $blog_post = $data['post_content'];
+        
+        $output = "<div class=\"wrap-box\">";
+        $output .= "<header class=\"row\">";
+        $output .= "<h2>This week in RazaWeb</h2>";
+        $output .= "</header>";
+        $output .= "<div class=\"row link-box\">";
+        $output .= "<div class=\"row\"><p>{$blog_post}</p></div>";
+        $output .= "<br class=\"clearfloat\" />";
+        $output .= "<!-- end link-box .row --></div>";
+        $output .= "<!-- end . wrap-box END MAIN CONTENT BOX--></div>";
+        
+        
+    } else {
+        // Portal Home Pages Only
+        $query = "SELECT * FROM blog_posts WHERE portal_id={$portal_id} AND topic_id=0 AND post_type_id=1 LIMIT 1";
+        $result = $db->query($query);
+        $data = $db->fetch_assoc($result);
+        $blog_post = $data['post_content'];
+        
+        $portal = Portal::find_by_id($portal_id);
+        $portal_title = $portal->portal;
+                    
+        $output = "<div class=\"wrap-box\">";
+        $output .= "<header class=\"row\">";
+        $output .= "<h2>This week in {$portal_title}</h2>";
+        $output .= "</header>";
+        $output .= "<div class=\"row link-box\">";
+        $output .= "<div class=\"row\"><p>{$blog_post}</p></div>";
+        $output .= "<br class=\"clearfloat\" />";
+        $output .= "<!-- end link-box .row --></div>";
+        $output .= "<!-- end . wrap-box END MAIN CONTENT BOX--></div>"; 
+    }
+    
+    return $output;
+
+} // end function display_blog_post_excerpt
+
 // BLOG POST Box
 function display_blog_post($portal_id){
     global $db;
