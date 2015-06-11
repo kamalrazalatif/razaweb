@@ -5,7 +5,7 @@ require_once("database.php");  // database class/ object $db
 class Link extends DatabaseObject {
     
     protected static $table_name = "links";
-    protected static $db_fields = array('id', 'user_id', 'portal_id', 'topic_id', 'sub_topic_1_id','sub_topic_2_id','sub_topic_3_id','sub_topic_4_id','category_id','sub_category_1_id','sub_category_2_id','content_source_id','rank','toplinks','quicklink','link_text','link_href','link_desc','link_pic','link_date','upload_date');
+    protected static $db_fields = array('id', 'user_id', 'portal_id', 'topic_id', 'sub_topic_1_id','sub_topic_2_id','sub_topic_3_id','sub_topic_4_id','category_id','sub_category_1_id','sub_category_2_id','content_source_id','rank','toplinks','quicklink','portal_quicklink','link_text','link_href','link_desc','link_pic','link_date','upload_date');
     
     public $id;
     public $user_id;
@@ -22,6 +22,7 @@ class Link extends DatabaseObject {
     public $rank;
     public $toplinks;
     public $quicklink;
+    public $portal_quicklink;
     public $link_text;
     public $link_href;
     public $link_desc;

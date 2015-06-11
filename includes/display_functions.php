@@ -1252,13 +1252,11 @@ function display_main_content($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_
     if($portal_id != 156 && $topic_id == 156 && $category_id == 156 && $sub_topic_1_id == 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){
         // Portal Home Pages Only
         echo display_blog_post($portal_id);
-        display_links_box($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
+        //display_links_box($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
         display_tabbed_panel_box($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
     } elseif($portal_id != 156 && $topic_id == 156 && $category_id != 156 && $sub_topic_1_id == 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){
         // Portal & Category Page Only
-        display_links_box($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
-        top_links($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
-        display_links_list($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
+        display_links_in_category($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
     } elseif($portal_id != 156 && $topic_id != 156 && $category_id == 156 && $sub_topic_1_id == 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156) {
         // Portal & Topic Page Only
         display_tabbed_panel_box($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
@@ -1689,7 +1687,9 @@ function display_links_in_category($portal_id,$topic_id,$sub_topic_1_id,$sub_top
                     if($category_id != 156){
                     $query .= " AND category_id={$category_id}";
                     }
-                            
+                    if($category_id == 1){
+                    $query .= " ORDER BY link_date DESC";           
+                    }
                     global $db;
                     $result_set = $db->query($query);
                     
@@ -1774,7 +1774,20 @@ function display_links_in_category($portal_id,$topic_id,$sub_topic_1_id,$sub_top
                         echo "<!-- end .row link-box--></div>";
                         echo "<!-- end .wrap-box--></div>";
 } // end function display_links_in_category
-
+function display_topic_links_in_category($portal_id,$topic_id,$category_id){
+    $query = "SELECT * FROM links WHERE portal_id={$portal_id} AND topic_id={$topic_id} AND category_id={$category_id}";
+    global $db;
+    $result_set = $db->query($query);
+                    
+            while ($link = $db->fetch_assoc($result_set)){
+                $href = $link['link_href'];
+                $text = htmlentities($link['link_text']);
+                $link_pic = $link['link_pic'];
+                
+                $output = "<div class=\"col-sm-3 col-md-3\"><a class=\"thumbnail\" href=\"{$href}\" target=\"_blank\"><div class=\"top-link-pic\"><img class=\"img-responsive\" src=\"assets/images/uploads/linkpic/large/{$link_pic}\" /></div><div class=\"tn-link-text\"><p>{$text}</p></div></a></div>";
+                echo $output;
+            } // END WHILE LOOP
+} //display_topic_links_in_category
 // TABBED PANEL BOX ------------------------------------------------------------------------------------------------------------------------------------------->
 function display_tabbed_panel_box($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id){
     
@@ -1829,7 +1842,7 @@ function nav_tabs($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topi
                 } // end while
                 
                 //TOPICS
-                $query = "SELECT * FROM topics WHERE portal_id={$portal_id}";
+                $query = "SELECT * FROM topics WHERE portal_id={$portal_id} AND tabpanel=1";
                 $result = $db->query($query);
                 while($data = $db->fetch_assoc($result)){
                     $href = "#" . $data['topic'];
@@ -1988,12 +2001,12 @@ function tab_content($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_t
             } // end tab-panel-content for portal while loop
                     
     } elseif($portal_id != 156 && $topic_id == 156 && $category_id == 156 && $sub_topic_1_id == 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){
-        // Portal Home Pages - List of TOPICS and CATEGORIES as Tab Content
-        
+        // PORTAL Home Pages - List of TOPICS and CATEGORIES as Tab Content
+
             $portal = Portal::find_by_id($portal_id);
             $portal_title = $portal->portal;
             
-            //CATEGORIES
+            //CATEGORIES Tab Content
             $query = "SELECT * FROM category,portal_category_relationship WHERE portal_id={$portal_id} AND portal_category_relationship.category_id=category.id";
             $category_results = $db->query($query);
             while($data = $db->fetch_assoc($category_results)){
@@ -2001,7 +2014,10 @@ function tab_content($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_t
                 $str = $data['category_title'];
                 $div_id = preg_replace('/\s+/', '', $str);
                 $tab = $data['category_title'];
-                $output = "<div id=\"{$div_id}\" class=\"tab-pane fade in\"><div class=\"panel-block\"><div class=\"row panel-summary\"><ul>";
+                $output = "<div id=\"{$div_id}\" class=\"tab-pane fade in active\">";
+                $output .= "<div class=\"panel-block\">";
+                $output .= "<div class=\"row panel-summary\">";
+                $output .= "<ul class=\"list-inline\">";
                 echo $output;
                     
                     // Display list of 4/5 most recent links for this category in this topic from links_tbl
@@ -2015,37 +2031,71 @@ function tab_content($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_t
                         $output = "<div class=\"col-sm-3 col-md-3\"><a class=\"thumbnail\" href=\"{$href}\" target=\"_blank\"><div class=\"top-link-pic\"><img class=\"img-responsive\" src=\"assets/images/uploads/linkpic/large/{$link_pic}\" /></div><div class=\"tn-link-text\"><p>{$text}</p></div></a></div>";
                         echo $output;
                         } // end while loop
-            echo "<!-- end dynamically generated link list --></ul><!-- end .panel-summary--></div><br class=\"clearfloat\" /><!-- end .panel-block--></div><!-- end TAB #sectionA --></div>";
-            } // end while loop
+                        
+                $output = "<!-- end dynamically generated link list --></ul>";
+                $output .= "<!-- end .row panel-summary--></div>";
+                $output .= "<br class=\"clearfloat\" />";
+                $output .= "<!-- end .panel-block--></div>";
+                $output .= "<!-- end TAB #{$div_id} --></div>";
+                echo $output;    
+            } // end CATEGORIES while loop
             
             
-            // TOPICS
-            $query = "SELECT * FROM topics WHERE portal_id={$portal_id} AND navbar=1";
+            // TOPICS Tab Content - lIST OF Category and Sub Topic 1 Links header
+            $query = "SELECT * FROM topics WHERE portal_id={$portal_id} AND tabpanel=1";
             $result = $db->query($query);
             while($data = $db->fetch_assoc($result)){
                 $tab_topic_id = $data['id'];
                 $div_id = $data['topic'];
                 $tab = $data['topic'];
-                $output = "<div id=\"{$div_id}\" class=\"tab-pane fade in active\"><div class=\"panel-block\"><div class=\"row panel-summary\"><ul>";
+                $output = "<div id=\"{$div_id}\" class=\"tab-pane fade in active\">";
+                //$output .= "<div class=\"row panel-block\">";
+                //$output .= "<div class=\"col-md-12 panel-summary\">";
+                $output .= "<div class=\"row\">";
+                $output .= "<div class=\"col-md-12\">";
+                $output .= "<ul class=\"list-inline tab-list\">";
                 echo $output;
                 
+                    //List of CATEGORIES for each TOPIC Tab    
+                    $query = "SELECT * FROM category,category_topic_relationship WHERE topic_id={$tab_topic_id} AND category_topic_relationship.category_id=category.id";
+                    $category_results = $db->query($query);
+                    while($data = $db->fetch_assoc($category_results)){
+                        $link_category_id = $data['id'];
+                        $category_title = $data['category_title'];
+                        $output = "<li><a href=\"index.php?p={$portal_id}&amp;t={$tab_topic_id}&amp;c={$link_category_id}\">{$category_title}</a> |</li>";
+                        echo $output;
+                    } // end CATEGORIES in Topic while loop
+                        
+                    //List of SUB TOPIC 1s for each TOPIC Tab
                     $query = "SELECT * FROM sub_topic_1 WHERE topic_id={$tab_topic_id}";
                     $sub_topic_result = $db->query($query);
                         while($sub_topic_data = $db->fetch_assoc($sub_topic_result)){
                             $link_sub_topic_1_id = $sub_topic_data['id'];
                             $sub_topic_1_title = $sub_topic_data['sub_topic_1'];
-                            $sub_topic_1_pic = $sub_topic_data['topic_pic'];
                             $link_portal_id = $portal_id;
                             $link_topic_id = $sub_topic_data['topic_id'];
 
-                            $output = "<div class=\"col-lg-2\"><a href=\"index.php?p={$link_portal_id}&amp;t={$link_topic_id}&amp;st1={$link_sub_topic_1_id}\"><img class=\"img-responsive\" src=\"assets/images/homepage/tabbedpanel/{$portal_title}/{$div_id}/{$sub_topic_1_pic}\" /></a></div>";
+                            $output = "<li><a href=\"index.php?p={$link_portal_id}&amp;t={$link_topic_id}&amp;st1={$link_sub_topic_1_id}\">{$sub_topic_1_title}</a> |</li>";
                             echo $output;
-                        } // end while loop
+                        } // end SUB TOPIC 1s in Topic while loop
                         
-                echo "<!-- end dynamically generated link list --></ul><!-- end .panel-summary--></div><br class=\"clearfloat\" /><!-- end .panel-block--></div><!-- end TAB #sectionA --></div>";        
-            } // end while loop
-            
-            
+                $output = "<!-- end dynamically generated link list --></ul>";
+                $output .= "<!-- end .col-md-12 tab-list--></div>";
+                $output .= "<!-- end .row --></div>";
+                echo $output;
+                //DISPLAY List of 4 top articles on TOPIC tab
+                $output = "<div class=\"row panel-block\">";
+                $output .= "<div class=\"col-md-12 panel-summary\">";
+                echo $output;
+                //Links Loop
+                $tab_content_category_id = 1; //articles and news
+                display_topic_links_in_category($portal_id,$tab_topic_id,$tab_content_category_id);
+                $output = "<!-- end .col-md-12 panel-summary--></div>";
+                $output .= "<br class=\"clearfloat\" />";
+                $output .= "<!-- end .panel-block--></div>";
+                $output .= "<!-- end TAB #{$div_id} --></div>";
+                echo $output;       
+            } // end TOPICs while loop
             
     }elseif($portal_id != 156 && $topic_id != 156 && $category_id == 156 && $sub_topic_1_id == 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){
         // Topic Home Pages - List of SUB-TOPIC-1S and/or CATEGORIES as Nav Tabs
@@ -2252,16 +2302,21 @@ function display_quick_links_sidebar($portal_id,$topic_id,$sub_topic_1_id,$sub_t
         }
         
         if($topic_id == 156){
+            // PORTALs only
             $query_topic_id = 0;
-            $query = "SELECT * FROM links WHERE portal_id={$query_portal_id} AND quicklink=1";
+            $query = "SELECT * FROM links WHERE portal_id={$query_portal_id}";
+            $query .= " AND quicklink=1";
+            $query .= " AND portal_quicklink=1";
+            //$query .= " ORDER BY rank ASC";
             global $db;
             $result_set = $db->query($query);
         
             while ($link = $db->fetch_assoc($result_set)){
                 $href = $link['link_href'];
                 $text = $link['link_text'];
+                $pic = $link['link_pic'];
             
-                $output = "<li><a href=\"{$href}\" target=\"_blank\">{$text}</a></li>";
+                $output = "<li><a href=\"{$href}\" target=\"_blank\"><div class=\"row\"><div class=\"col-lg-3\"><img class=\"img-responsive quick-link-pic\" src=\"assets/images/uploads/linkpic/large/{$pic}\" /></div><div class=\"col-lg-9\">{$text}</div></div></a></li>";
                 echo $output;
             }
         } else {

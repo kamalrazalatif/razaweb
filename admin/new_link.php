@@ -30,6 +30,7 @@ $link->content_source_id = $_POST['content_source_id'];
 $link->rank = 0;
 $link->toplinks = 0;
 $link->quicklink = !empty($_POST['quicklink']) ? $_POST['quicklink'] : 0;
+$link->portal_quicklink = !empty($_POST['portal_quicklink']) ? $_POST['portal_quicklink'] : 0;
 $link->link_text = $_POST['link_text'];
 $link->link_href = $_POST['link_href'];
 $link->link_desc = $_POST['link_desc'];
@@ -148,6 +149,13 @@ $link->upload_date = strftime("%Y-%m-%d %H:%M:%S",time());
 		    <div class="checkbox col-sm-10">
 			<label><input name="quicklink" type="checkbox" value=1>Is This Link also a QuickLink?</label>
 		    </div>
+		<!-- end .form-group --></div>
+		
+		<div class="form-group">
+		    <div class="control-label col-sm-2"></div>
+		    <div class="checkbox col-sm-10">
+			<label><input name="portal_quicklink" type="checkbox" value=1>Is This Link also a Portal QuickLink?</label>
+		</div>
 		<!-- end .form-group --></div>
 		
                 <div class="form-group">

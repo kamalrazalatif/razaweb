@@ -302,6 +302,12 @@ border-bottom-color: #ffffff;
 }
 
 .top-link-pic{
+	/*max-height: 90px;*/
+	
+}
+
+.img-link-pic{
+	max-height: 90px;
 	
 }
 
@@ -331,6 +337,22 @@ border-width: 2px;
 	background-color: #9CF;
 	color: #333;
 	padding: 2px;
+	height: 60px;
+	font-weight: bold;
 }
 
+.tab-list{
+	background-color: #9CF;
+	padding: 10px;
+	color: black;
+}
+
+.tab-list a{
+	color: black;
+}
+
+.quick-link-pic{
+	/*max-width: 80px;*/
+	/*max-height: 80px;*/
+}
 
