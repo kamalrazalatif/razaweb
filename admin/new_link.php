@@ -91,7 +91,7 @@ $link->upload_date = strftime("%Y-%m-%d %H:%M:%S",time());
 					
 					
 					
-						$query = "SELECT * FROM content_source";
+						$query = "SELECT * FROM content_source ORDER BY content_source ASC";
 						$result = $db->query($query);
 						while($data = $db->fetch_assoc($result)){
 							$content_source_id = $data['id'];

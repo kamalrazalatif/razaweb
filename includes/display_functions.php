@@ -1411,7 +1411,7 @@ function display_blog_post($portal_id){
         
     } else {
         // Portal Home Pages Only
-        $query = "SELECT * FROM blog_posts WHERE portal_id={$portal_id} AND topic_id=0 LIMIT 1";
+        $query = "SELECT * FROM blog_posts WHERE portal_id={$portal_id} AND topic_id=0  AND post_type_id=2 LIMIT 1";
         $result = $db->query($query);
         $data = $db->fetch_assoc($result);
         $blog_post = $data['post_content'];
@@ -1744,7 +1744,7 @@ function display_links_in_category($portal_id,$topic_id,$sub_topic_1_id,$sub_top
                         $text = htmlentities($link['link_text']);
                         $link_pic = $link['link_pic'];
                         
-                        $output = "<div class=\"col-sm-3 col-md-3\"><a class=\"thumbnail\" href=\"{$href}\" target=\"_blank\"><div class=\"top-link-pic\"><img class=\"img-responsive\" src=\"assets/images/uploads/linkpic/large/{$link_pic}\" /></div><div class=\"tn-link-text\"><p>{$text}</p></div></a></div>";
+                        $output = "<div class=\"col-sm-2 col-md-2\"><a class=\"thumbnail\" href=\"{$href}\" target=\"_blank\"><div class=\"top-link-pic\"><img class=\"img-responsive\" src=\"assets/images/uploads/linkpic/large/{$link_pic}\" /></div><div class=\"tn-link-text\"><p>{$text}</p></div></a></div>";
                         echo $output;
                     } // END WHILE LOOP
         
@@ -1821,7 +1821,7 @@ function display_links_in_category($portal_id,$topic_id,$sub_topic_1_id,$sub_top
                         echo "<!-- end .wrap-box--></div>";
 } // end function display_links_in_category
 function display_topic_links_in_category($portal_id,$topic_id,$category_id){
-    $query = "SELECT * FROM links WHERE portal_id={$portal_id} AND topic_id={$topic_id} AND category_id={$category_id}";
+    $query = "SELECT * FROM links WHERE portal_id={$portal_id} AND topic_id={$topic_id} AND category_id={$category_id} ORDER BY link_date DESC LIMIT 4";
     global $db;
     $result_set = $db->query($query);
                     
@@ -2129,6 +2129,7 @@ function tab_content($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_t
                 $output .= "<!-- end .col-md-12 tab-list--></div>";
                 $output .= "<!-- end .row --></div>";
                 echo $output;
+                
                 //DISPLAY List of 4 top articles on TOPIC tab
                 $output = "<div class=\"row panel-block\">";
                 $output .= "<div class=\"col-md-12 panel-summary\">";
