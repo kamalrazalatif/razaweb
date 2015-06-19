@@ -180,6 +180,11 @@ header h2 a{
   
 }
 
+.navbar-inverse .navbar-header .fa {
+  color: #ffffff;
+  
+}
+
 .navbar-inverse .navbar-nav>.active>a {
 	color: #000000;
   background-color: #FFFFFF;

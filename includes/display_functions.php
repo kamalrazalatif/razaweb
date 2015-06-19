@@ -220,6 +220,59 @@ function display_page_title($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id
 
 
 //WEB PAGE FUNCTIONS
+//hoem path
+function home_path($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id){
+    if ($portal_id != 10 && $topic_id == 156 && $category_id != 156 && $sub_topic_1_id == 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){
+            // Portal & Category
+            $output = "index.php?p={$portal_id}";
+                       
+        } elseif ($portal_id != 10 && $topic_id != 156 && $category_id == 156 && $sub_topic_1_id == 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){  
+            // Portal & Topic
+            $output = "index.php?p={$portal_id}&t={$topic_id}";
+  
+        } elseif ($portal_id != 10 && $topic_id != 156 && $category_id != 156 && $sub_topic_1_id == 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){  
+            // Portal, Topic & category
+            $output = "index.php?p={$portal_id}&t={$topic_id}";
+            
+        } elseif ($portal_id != 10 && $topic_id != 156 && $category_id == 156 && $sub_topic_1_id != 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){  
+            // Portal, Topic & sub topic 1
+            $output = "index.php?p={$portal_id}&t={$topic_id}";
+            
+        } elseif ($portal_id != 10 && $topic_id != 156 && $category_id != 156 && $sub_topic_1_id != 156 && $sub_topic_2_id == 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){  
+            // Portal, Topic, Sub topic 1 & Category
+            $output = "index.php?p={$portal_id}&t={$topic_id}";
+            
+        } elseif ($portal_id != 10 && $topic_id != 156 && $category_id == 156 && $sub_topic_1_id != 156 && $sub_topic_2_id != 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){  
+           // Portal, Topic, Sub topic 1 & Sub Topic 2
+            $output = "index.php?p={$portal_id}&t={$topic_id}&st1={$sub_topic_1_id}&st2={$sub_topic_2_id}";
+            
+        } elseif ($portal_id != 10 && $topic_id != 156 && $category_id != 156 && $sub_topic_1_id != 156 && $sub_topic_2_id != 156 && $sub_topic_3_id == 156 && $sub_topic_4_id == 156){  
+            // Portal, Topic, Sub topic 1, Sub Topic 2 & category
+            $output = "index.php?p={$portal_id}&t={$topic_id}&st1={$sub_topic_1_id}&st2={$sub_topic_2_id}";
+        } elseif ($portal_id != 10 && $topic_id != 156 && $category_id == 156 && $sub_topic_1_id != 156 && $sub_topic_2_id != 156 && $sub_topic_3_id != 156 && $sub_topic_4_id == 156){  
+            // Portal, Topic, Sub topic 1, Sub Topic 2 & Sub Topic 3
+            $output = "index.php?p={$portal_id}&t={$topic_id}&st1={$sub_topic_1_id}&st2={$sub_topic_2_id}";
+            
+        } elseif ($portal_id != 10 && $topic_id != 156 && $category_id != 156 && $sub_topic_1_id != 156 && $sub_topic_2_id != 156 && $sub_topic_3_id != 156 && $sub_topic_4_id == 156){  
+            // Portal, Topic, Sub topic 1, Sub Topic 2, Sub Topic 3 & Category
+            $output = "index.php?p={$portal_id}&t={$topic_id}&st1={$sub_topic_1_id}&st2={$sub_topic_2_id}";
+            
+        } elseif ($portal_id != 10 && $topic_id != 156 && $category_id == 156 && $sub_topic_1_id != 156 && $sub_topic_2_id != 156 && $sub_topic_3_id != 156 && $sub_topic_4_id != 156){  
+            // Portal, Topic, Sub topic 1, Sub Topic 2, Sub Topic 3, & Sub Topic 4
+            $output = "index.php?p={$portal_id}&t={$topic_id}&st1={$sub_topic_1_id}&st2={$sub_topic_2_id}";
+            
+        } elseif ($portal_id != 10 && $topic_id != 156 && $category_id != 156 && $sub_topic_1_id != 156 && $sub_topic_2_id != 156 && $sub_topic_3_id != 156 && $sub_topic_4_id != 156){  
+            // Portal, Topic, Sub topic 1, Sub Topic 2, Sub Topic 3, Sub Topic 4 & Category
+            $output = "index.php?p={$portal_id}&t={$topic_id}&st1={$sub_topic_1_id}&st2={$sub_topic_2_id}";
+            
+        } else {
+            // Portal Only
+            $output = "index.php?p={$portal_id}";
+        }
+        
+        return $output;
+} // end function home_path;
+
 // Web Page Header ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
 function display_header_title($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id){
     
@@ -398,9 +451,11 @@ function display_local_navigation($portal_id,$topic_id,$sub_topic_1_id,$sub_topi
             // Portal Only
             display_local_nav_1($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
         }
-}
+} // end function display_local_navigation
 
 function display_local_nav_1($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id){
+    $home_path = home_path($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_id,$sub_topic_3_id,$sub_topic_4_id,$category_id);
+    
     $output = "<div class=\"row\">";
     $output .= "<nav class=\"navbar navbar-inverse navtopic\">";
     $output .= "<div class=\"container\">";
@@ -411,6 +466,7 @@ function display_local_nav_1($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_i
     $output .= "<span class=\"icon-bar\"></span>";
     $output .= "<span class=\"icon-bar\"></span>";
     $output .= "</button>";
+    $output .= "<a class=\"navbar-brand\" href=\"{$home_path}\"><i class=\"fa fa-home\"></i></a>";
       
     $output .= "<!-- END .NAVBAR-HEADER--></div>";
     $output .= "<!-- Collect the nav links, forms, and other content for toggling -->";
@@ -1368,6 +1424,7 @@ function display_blog_post_excerpt($portal_id){
         $query = "SELECT * FROM blog_posts WHERE portal_id={$portal_id} AND topic_id=0 AND post_type_id=1 LIMIT 1";
         $result = $db->query($query);
         $data = $db->fetch_assoc($result);
+        $post_pic = $data['post_pic'];
         $blog_post = $data['post_content'];
         
         $portal = Portal::find_by_id($portal_id);
@@ -1378,7 +1435,10 @@ function display_blog_post_excerpt($portal_id){
         $output .= "<h2>This week in {$portal_title}</h2>";
         $output .= "</header>";
         $output .= "<div class=\"row link-box\">";
-        $output .= "<div class=\"row\"><p>{$blog_post}</p></div>";
+        $output .= "<div class=\"row\">";
+        $output .= "<div class=\"col-sm-3\"><img class=\"img-responsive\" src=\"assets/images/uploads/linkpic/large/{$post_pic}\" /></div>";
+        $output .= "<div class=\"col-sm-9\">{$blog_post}</div>";
+        $output .= "<!-- end .row--></div>";
         $output .= "<br class=\"clearfloat\" />";
         $output .= "<!-- end link-box .row --></div>";
         $output .= "<!-- end . wrap-box END MAIN CONTENT BOX--></div>"; 
