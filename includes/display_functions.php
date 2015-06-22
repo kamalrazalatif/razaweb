@@ -2435,8 +2435,9 @@ function display_quick_links_sidebar($portal_id,$topic_id,$sub_topic_1_id,$sub_t
             while ($link = $db->fetch_assoc($result_set)){
                 $href = $link['link_href'];
                 $text = $link['link_text'];
+                $pic = $link['link_pic'];
             
-                $output = "<li><a href=\"{$href}\" target=\"_blank\">{$text}</a></li>";
+                $output = "<li><a href=\"{$href}\" target=\"_blank\"><div class=\"row\"><div class=\"col-lg-3\"><img class=\"img-responsive quick-link-pic\" src=\"assets/images/uploads/linkpic/large/{$pic}\" /></div><div class=\"col-lg-9\">{$text}</div></div></a></li>";
                 echo $output;
             }
         }
