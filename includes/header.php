@@ -59,11 +59,14 @@ $page_title = display_page_title($portal_id,$topic_id,$sub_topic_1_id,$sub_topic
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
+        Menu
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
         <span class="sr-only">Toggle navigation</span>
+        <i class="fa fa-bars"></i> Menu
+        <!--Menu
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>-->
       </button>
       <a class="navbar-brand" href="index.php"><img src="assets/images/rw_logo1_exp.png"> RazaWeb</a>
     </div>

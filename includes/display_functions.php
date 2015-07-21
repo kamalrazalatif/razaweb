@@ -462,9 +462,10 @@ function display_local_nav_1($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_i
     $output .= "<div class=\"navbar-header\">";
     $output .= "<button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-2\">";
     $output .= "<span class=\"sr-only\">Toggle navigation</span>";
-    $output .= "<span class=\"icon-bar\"></span>";
-    $output .= "<span class=\"icon-bar\"></span>";
-    $output .= "<span class=\"icon-bar\"></span>";
+    $output .= "<i class=\"fa fa-bars\"></i> Menu";
+    //$output .= "<span class=\"icon-bar\"></span>";
+    //$output .= "<span class=\"icon-bar\"></span>";
+    //$output .= "<span class=\"icon-bar\"></span>";
     $output .= "</button>";
     $output .= "<a class=\"navbar-brand\" href=\"{$home_path}\"><i class=\"fa fa-home\"></i></a>";
       
@@ -699,9 +700,10 @@ function display_local_nav_2($portal_id,$topic_id,$sub_topic_1_id,$sub_topic_2_i
     $output .= "<div class=\"navbar-header\">";
     $output .= "<button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-4\">";
     $output .= "<span class=\"sr-only\">Toggle navigation</span>";
-    $output .= "<span class=\"icon-bar\"></span>";
-    $output .= "<span class=\"icon-bar\"></span>";
-    $output .= "<span class=\"icon-bar\"></span>";
+    $output .= "<i class=\"fa fa-bars\"></i> Menu";
+    //$output .= "<span class=\"icon-bar\"></span>";
+    //$output .= "<span class=\"icon-bar\"></span>";
+    //$output .= "<span class=\"icon-bar\"></span>";
     $output .= "</button>";
       
     $output .= "<!-- END .NAVBAR-HEADER--></div>";
